@@ -1,4 +1,22 @@
+# Environment variables
 .env
-.venv/
+.env.*
+
+!.env.example
+
+# Python
 __pycache__/
-*.pyc
+*.py[cod]
+.venv/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Node
+node_modules/
+dist/
+
+# OS
+.DS_Store

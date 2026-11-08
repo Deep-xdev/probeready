@@ -453,3 +453,37 @@
     padding: 18px;
   }
 }
+
+/* Mobile text wrapping and spacing fixes */
+@media (max-width: 650px) {
+  .interview-main,
+  .interview-workspace {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .interview-question-card,
+  .interview-answer-card,
+  .evaluation-results {
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .interview-question-card h3,
+  .interview-question-card p,
+  .interview-heading p,
+  .evaluation-results p,
+  .evaluation-feedback p {
+    text-align: left;
+    letter-spacing: normal;
+    word-spacing: normal;
+    overflow-wrap: anywhere;
+    word-break: normal;
+    line-height: 1.7;
+  }
+
+  .interview-answer-card textarea {
+    max-width: 100%;
+  }
+}

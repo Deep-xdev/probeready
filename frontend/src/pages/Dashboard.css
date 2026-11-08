@@ -626,3 +626,70 @@
     text-align: left;
   }
 }
+
+
+/* Mobile layout fixes */
+@media (max-width: 700px) {
+  .dashboard-layout {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .sidebar {
+    flex: 0 0 54px;
+    width: 54px;
+    min-width: 54px;
+    padding: 22px 7px;
+    box-sizing: border-box;
+  }
+
+  .dashboard-main {
+    flex: 1 1 0;
+    width: 0;
+    min-width: 0;
+    max-width: none;
+    margin: 0;
+    padding: 20px 12px;
+    box-sizing: border-box;
+  }
+
+  .dashboard-main > * {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    width: 100%;
+  }
+
+  .stat-card {
+    min-width: 0;
+    padding: 12px;
+    overflow-wrap: anywhere;
+  }
+
+  .dashboard-content-grid {
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+  }
+
+  .dashboard-panel,
+  .activity-panel,
+  .recommendation-panel {
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .activity-item {
+    min-width: 0;
+    flex-wrap: wrap;
+  }
+
+  .activity-details {
+    min-width: 0;
+  }
+}

@@ -394,23 +394,30 @@ setSavedResume(resumeData.resume);
 
 
         <section className="recommendation-panel">
-          <div className="recommendation-icon">
-            <Sparkles size={23} />
-          </div>
+  <div className="recommendation-icon">
+    <Sparkles size={23} />
+  </div>
 
-          <div>
-            <span className="panel-eyebrow">SUGGESTED FOCUS</span>
-            <h3>Strengthen your Node.js fundamentals</h3>
-            <p>
-              Your sample profile indicates this is an area
-              worth practising next.
-            </p>
-          </div>
+  <div>
+    <span className="panel-eyebrow">SUGGESTED FOCUS</span>
 
-          <a href="/interview" className="recommendation-button">
-            Practice now <ArrowUpRight size={17} />
-          </a>
-        </section>
+    <h3>
+      {analytics?.weakest_skill
+        ? `Strengthen your ${analytics.weakest_skill.skill} skills`
+        : "Start your interview practice"}
+    </h3>
+
+    <p>
+      {analytics?.weakest_skill
+        ? analytics.weakest_skill.recommendation
+        : "Complete an interview to receive personalized improvement recommendations."}
+    </p>
+  </div>
+
+  <Link to="/interview" className="recommendation-button">
+    Practice now <ArrowUpRight size={17} />
+  </Link>
+</section>
 
         <footer className="dashboard-footer">
           ProbeReady © 2026
