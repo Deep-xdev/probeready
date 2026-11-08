@@ -1,28 +1,48 @@
 
+import os
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
-# SQLite database file will be created inside backend/
-DATABASE_URL = "sqlite:///./probeready.db"
+# Use PostgreSQL in production and SQLite locally.
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./probeready.db")
 
-# Create the database engine
+# Render PostgreSQL URLs may use postgres://.
+# SQLAlchemy expects postgresql://.
+if DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace(
+        "postgres://",
+        "postgresql+psycopg://",
+        1
+    )
+elif DATABASE_URL.startswith("postgresql://"):
+    DATABASE_URL = DATABASE_URL.replace(
+        "postgresql://",
+        "postgresql+psycopg://",
+        1
+    )
+
+engine_options = {}
+
+if DATABASE_URL.startswith("sqlite"):
+    engine_options["connect_args"] = {
+        "check_same_thread": False
+    }
+
 engine = create_engine(
     DATABASE_URL,
-    connect_args={"check_same_thread": False}
+    **engine_options
 )
 
-# Create database sessions
 SessionLocal = sessionmaker(
     autocommit=False,
     autoflush=False,
     bind=engine
 )
 
-# Base class for database models
 Base = declarative_base()
 
 
-# Dependency for FastAPI routes
 def get_db():
     db = SessionLocal()
 
