@@ -1,263 +1,491 @@
 
-/* Interview Workspace */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
-.interview-layout {
-  display: flex;
-  min-height: 100vh;
-  background: #080f1c;
-  color: #f1f5f9;
+/* =========================================
+   PROBEREADY - SPATIAL AI WORKSPACE
+   INTERVIEW PAGE
+========================================= */
+
+.interview-page,
+.interview-page * {
+  box-sizing: border-box;
 }
 
-.interview-sidebar {
-  width: 250px;
-  flex-shrink: 0;
-  background: #0c1524;
-  border-right: 1px solid rgba(148, 163, 184, 0.12);
-  padding: 28px 20px;
-  display: flex;
-  flex-direction: column;
-}
-
-.interview-main {
-  flex: 1;
+.interview-page {
+  width: 100%;
   min-width: 0;
-  padding: 30px 42px;
+  color: var(--space-text, #f2f2ff);
+  font-family: 'DM Sans', sans-serif;
+  position: relative;
 }
+
+.interview-page button,
+.interview-page textarea,
+.interview-page a {
+  font-family: inherit;
+}
+
+.interview-page a {
+  text-decoration: none;
+}
+
+/* =========================================
+   PAGE HEADING
+========================================= */
 
 .interview-heading {
-  margin: 45px 0 35px;
-  max-width: 750px;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 0 32px;
+  position: relative;
+  z-index: 1;
+}
+
+.interview-heading .resume-eyebrow,
+.evaluation-results .resume-eyebrow,
+.completion-header .resume-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--space-purple, #9b7bff);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
 }
 
 .interview-heading h1 {
-  color: #f1f5f9;
-  font-size: 34px;
-  margin: 16px 0 12px;
+  margin: 13px 0 0;
+  color: var(--space-text, #f2f2ff);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(30px, 4vw, 43px);
+  font-weight: 700;
+  letter-spacing: -1.7px;
+  line-height: 1.15;
 }
 
 .interview-heading h1 span {
-  color: #22d3ee;
+  color: var(--space-purple, #9b7bff);
 }
 
 .interview-heading p {
-  color: #94a3b8;
-  font-size: 14px;
-  line-height: 1.7;
-}
-
-.interview-empty {
-  background: #0c1524;
-  border: 1px solid rgba(148, 163, 184, 0.14);
-  border-radius: 16px;
-  padding: 50px 25px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-}
-
-.interview-empty > svg {
-  color: #22d3ee;
-}
-
-.interview-empty h3 {
-  color: #f1f5f9;
-}
-
-.interview-empty p {
-  color: #94a3b8;
-  max-width: 450px;
-  line-height: 1.7;
-}
-
-.interview-empty a {
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.interview-workspace {
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
-  max-width: 900px;
-}
-
-.interview-progress {
-  display: flex;
-  justify-content: space-between;
-  color: #22d3ee;
-  font-size: 13px;
-  font-weight: 600;
-}
-
-.interview-question-card {
-  background: #0c1524;
-  border: 1px solid rgba(34, 211, 238, 0.2);
-  border-radius: 14px;
-  padding: 25px;
-}
-
-.interview-question-card > span {
-  color: #22d3ee;
-  font-size: 12px;
-  text-transform: uppercase;
-}
-
-.interview-question-card h3 {
-  color: #f1f5f9;
-  font-size: 21px;
-  line-height: 1.6;
-  margin: 15px 0;
-}
-
-.interview-question-card p {
-  color: #94a3b8;
-  font-size: 13px;
-  line-height: 1.7;
-}
-
-.interview-answer-card {
-  background: #0c1524;
-  border: 1px solid rgba(148, 163, 184, 0.14);
-  border-radius: 14px;
-  padding: 25px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.interview-answer-card label {
-  color: #cbd5e1;
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.interview-answer-card textarea {
-  width: 100%;
-  resize: vertical;
-  box-sizing: border-box;
-  background: #14283a;
-  color: #f1f5f9;
-  border: 1px solid rgba(148, 163, 184, 0.2);
-  border-radius: 10px;
-  padding: 16px;
-  font-family: inherit;
-  font-size: 14px;
-  line-height: 1.7;
-  outline: none;
-}
-
-.interview-answer-card textarea:focus {
-  border-color: #22d3ee;
-}
-
-.interview-answer-card textarea::placeholder {
-  color: #64748b;
-}
-
-.interview-answer-card button,
-.evaluation-results button {
-  align-self: flex-start;
-}
-
-.evaluation-results {
-  background: #0c1524;
-  border: 1px solid rgba(34, 211, 238, 0.2);
-  border-radius: 14px;
-  padding: 25px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.evaluation-results h3 {
-  color: #22d3ee;
-  font-size: 22px;
-}
-
-.evaluation-results > p {
-  color: #cbd5e1;
-}
-
-.evaluation-feedback h4 {
-  color: #a5b4fc;
-  margin: 20px 0 8px;
-}
-
-.evaluation-feedback p {
-  color: #a8b4c7;
+  max-width: 620px;
+  margin: 14px 0 0;
+  color: var(--space-muted, #a0a3c2);
   font-size: 14px;
   line-height: 1.8;
 }
 
-@media (max-width: 900px) {
-  .interview-sidebar {
-    width: 210px;
-  }
+/* =========================================
+   SHARED GLASS SURFACES
+========================================= */
 
-  .interview-main {
-    padding: 25px;
-  }
+.interview-empty,
+.interview-question-card,
+.interview-answer-card,
+.evaluation-results,
+.completion-score-card,
+.completion-metric,
+.completion-insights > div {
+  background: var(--space-surface, rgba(19, 22, 43, 0.72));
+  border: 1px solid var(--space-border, rgba(165, 170, 255, 0.13));
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: var(--space-shadow, 0 18px 50px rgba(0, 0, 0, 0.24));
 }
 
-@media (max-width: 650px) {
-  .interview-sidebar {
-    display: none;
-  }
+/* =========================================
+   EMPTY STATE
+========================================= */
 
-  .interview-main {
-    padding: 20px;
-  }
-
-  .interview-heading h1 {
-    font-size: 27px;
-  }
-
-  .interview-question-card h3 {
-    font-size: 18px;
-  }
+.interview-empty {
+  min-height: 300px;
+  padding: 40px 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
 }
+
+.interview-empty > svg {
+  width: 65px;
+  height: 65px;
+  padding: 17px;
+  border-radius: 18px;
+  color: var(--space-purple, #9b7bff);
+  background: rgba(155, 123, 255, 0.12);
+  border: 1px solid rgba(155, 123, 255, 0.2);
+}
+
+.interview-empty h3 {
+  margin: 4px 0 0;
+  color: var(--space-text, #f2f2ff);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+}
+
+.interview-empty p {
+  max-width: 450px;
+  margin: 0;
+  color: var(--space-muted, #a0a3c2);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.interview-empty a {
+  margin-top: 8px;
+}
+
+/* =========================================
+   INTERVIEW WORKSPACE
+========================================= */
+
+.interview-workspace {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================================
+   PROGRESS
+========================================= */
+
+.interview-progress {
+  position: sticky;
+  top: 12px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 15px 19px;
+  border: 1px solid var(--space-border, rgba(165, 170, 255, 0.13));
+  border-radius: 15px;
+  background: rgba(16, 21, 39, 0.9);
+  color: var(--space-muted, #a0a3c2);
+  font-size: 12px;
+  font-weight: 600;
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
+}
+
+.interview-progress span:last-child {
+  padding: 7px 12px;
+  border: 1px solid rgba(155, 123, 255, 0.2);
+  border-radius: 8px;
+  background: rgba(155, 123, 255, 0.1);
+  color: #c5b9ff;
+  font-size: 11px;
+  text-transform: capitalize;
+}
+
+/* =========================================
+   PREVIOUS QUESTION
+========================================= */
+
 .interview-previous-button {
   align-self: flex-start;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 16px;
-  background: #14283a;
-  color: #22d3ee;
-  border: 1px solid rgba(34, 211, 238, 0.2);
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 13px;
+  padding: 10px 14px;
+  border: 1px solid var(--space-border, rgba(165, 170, 255, 0.13));
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.025);
+  color: var(--space-muted, #a0a3c2);
+  font-size: 12px;
   font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
 }
 
 .interview-previous-button:hover {
-  background: #1a354a;
+  color: white;
+  border-color: var(--space-border-hover, rgba(157, 135, 255, 0.35));
+  background: rgba(155, 123, 255, 0.08);
 }
 
-/* =================================
-   INTERVIEW COMPLETION DASHBOARD
-================================= */
+/* =========================================
+   QUESTION CARD
+========================================= */
+
+.interview-question-card {
+  width: 100%;
+  min-width: 0;
+  padding: clamp(23px, 3vw, 34px);
+  position: relative;
+  overflow: hidden;
+}
+
+.interview-question-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    var(--space-purple, #9b7bff),
+    var(--space-blue, #55a5ff),
+    transparent
+  );
+}
+
+.interview-question-card > span {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 11px;
+  border: 1px solid rgba(155, 123, 255, 0.22);
+  border-radius: 8px;
+  background: rgba(155, 123, 255, 0.1);
+  color: #c5b9ff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.interview-question-card h3 {
+  max-width: 1000px;
+  margin: 20px 0 13px;
+  color: var(--space-text, #f2f2ff);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(19px, 2.2vw, 25px);
+  line-height: 1.5;
+  letter-spacing: -0.5px;
+  overflow-wrap: anywhere;
+}
+
+.interview-question-card p {
+  max-width: 850px;
+  margin: 0;
+  color: var(--space-muted, #a0a3c2);
+  font-size: 13px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+/* =========================================
+   ANSWER CARD
+========================================= */
+
+.interview-answer-card {
+  width: 100%;
+  min-width: 0;
+  padding: clamp(20px, 3vw, 30px);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+}
+
+.interview-answer-card label {
+  color: #c5b9ff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+}
+
+.interview-answer-card textarea {
+  width: 100%;
+  min-height: 210px;
+  resize: vertical;
+  padding: 18px;
+  border: 1px solid var(--space-border, rgba(165, 170, 255, 0.13));
+  border-radius: 13px;
+  outline: none;
+  background: rgba(9, 13, 27, 0.82);
+  color: var(--space-text, #f2f2ff);
+  font-size: 14px;
+  line-height: 1.8;
+  transition: 0.2s ease;
+}
+
+.interview-answer-card textarea:focus {
+  border-color: var(--space-purple, #9b7bff);
+  box-shadow: 0 0 0 3px rgba(155, 123, 255, 0.12);
+}
+
+.interview-answer-card textarea::placeholder {
+  color: var(--space-subtle, #707596);
+}
+
+.interview-answer-card textarea:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* =========================================
+   PRIMARY BUTTON
+========================================= */
+
+.interview-page .resume-continue-button {
+  align-self: flex-start;
+  min-height: 46px;
+  padding: 12px 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid rgba(155, 123, 255, 0.35);
+  border-radius: 12px;
+  background: linear-gradient(110deg, #805df2, #477fe9);
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(105, 82, 230, 0.2);
+  transition: 0.22s ease;
+}
+
+.interview-page .resume-continue-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(105, 82, 230, 0.32);
+}
+
+.interview-page .resume-continue-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.interview-page .resume-continue-button:focus-visible,
+.interview-previous-button:focus-visible {
+  outline: 2px solid var(--space-purple, #9b7bff);
+  outline-offset: 3px;
+}
+
+.interview-answer-card button svg {
+  flex-shrink: 0;
+}
+
+.interview-answer-card button:has(svg.lucide-loader-circle) svg {
+  animation: interviewSpin 1s linear infinite;
+}
+
+@keyframes interviewSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================
+   ERROR MESSAGE
+========================================= */
+
+.interview-page .resume-error {
+  padding: 13px 15px;
+  border: 1px solid rgba(255, 124, 154, 0.22);
+  border-radius: 11px;
+  background: rgba(255, 92, 119, 0.08);
+  color: #ff9aaa;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* =========================================
+   EVALUATION RESULTS
+========================================= */
+
+.evaluation-results {
+  width: 100%;
+  min-width: 0;
+  padding: clamp(22px, 3vw, 32px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+  animation: interviewFadeIn 0.35s ease;
+}
+
+.evaluation-results .resume-eyebrow {
+  color: var(--space-green, #52dfb1);
+}
+
+.evaluation-results h3 {
+  margin: 0;
+  color: var(--space-text, #f2f2ff);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 24px;
+  letter-spacing: -0.5px;
+}
+
+.evaluation-results > p {
+  margin: 0;
+  color: var(--space-muted, #a0a3c2);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.evaluation-feedback {
+  width: 100%;
+  min-width: 0;
+  margin-top: 8px;
+  padding-top: 20px;
+  border-top: 1px solid var(--space-border, rgba(165, 170, 255, 0.13));
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 9px;
+}
+
+.evaluation-feedback h4 {
+  margin: 17px 0 3px;
+  color: var(--space-text, #f2f2ff);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.evaluation-feedback h4:first-child {
+  margin-top: 0;
+}
+
+.evaluation-feedback p {
+  width: 100%;
+  margin: 0;
+  color: var(--space-muted, #a0a3c2);
+  font-size: 13px;
+  line-height: 1.85;
+  overflow-wrap: anywhere;
+}
+
+.evaluation-results > button {
+  margin-top: 8px;
+}
+
+/* =========================================
+   COMPLETION SCREEN
+========================================= */
 
 .interview-completion {
   width: 100%;
-  max-width: 1000px;
-  margin: 35px 0;
+  margin: 22px 0;
   display: flex;
   flex-direction: column;
-  gap: 26px;
-  animation: completionFadeIn 0.5s ease;
+  gap: 22px;
+  position: relative;
+  z-index: 1;
+  animation: interviewFadeIn 0.45s ease;
 }
 
-@keyframes completionFadeIn {
+@keyframes interviewFadeIn {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -267,55 +495,85 @@
 .completion-header {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 11px;
+}
+
+.completion-header .resume-eyebrow {
+  color: var(--space-green, #52dfb1);
 }
 
 .completion-header h2 {
-  font-size: 30px;
-  color: #f1f5f9;
+  margin: 0;
+  color: var(--space-text, #f2f2ff);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(26px, 3vw, 34px);
+  letter-spacing: -0.9px;
 }
 
 .completion-header p {
-  color: #94a3b8;
-  font-size: 14px;
+  margin: 0;
+  color: var(--space-muted, #a0a3c2);
+  font-size: 13px;
   line-height: 1.7;
 }
 
 /* Overall score */
 
 .completion-score-card {
+  padding: clamp(24px, 3vw, 34px);
   position: relative;
   overflow: hidden;
-  padding: 30px;
-  border-radius: 16px;
-  border: 1px solid rgba(34, 211, 238, 0.25);
   background:
-    radial-gradient(circle at 90% 10%, rgba(34, 211, 238, 0.13), transparent 40%),
-    #0c1524;
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(155, 123, 255, 0.2),
+      transparent 38%
+    ),
+    var(--space-surface, rgba(19, 22, 43, 0.72));
+}
+
+.completion-score-card::after {
+  content: "";
+  position: absolute;
+  right: -35px;
+  bottom: -80px;
+  width: 210px;
+  height: 210px;
+  border: 1px solid rgba(155, 123, 255, 0.13);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 25px rgba(155, 123, 255, 0.025),
+    0 0 0 50px rgba(155, 123, 255, 0.02);
+  pointer-events: none;
 }
 
 .completion-score-card > span {
-  color: #94a3b8;
-  font-size: 12px;
+  color: var(--space-muted, #a0a3c2);
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.3px;
 }
 
 .completion-score-card h1 {
   margin: 12px 0;
-  color: #22d3ee;
-  font-size: 52px;
-  font-weight: 800;
+  color: white;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 55px;
+  font-weight: 700;
+  letter-spacing: -2px;
 }
 
 .completion-score-card h1 small {
-  font-size: 22px;
-  color: #94a3b8;
+  margin-left: 5px;
+  color: var(--space-muted, #a0a3c2);
+  font-size: 20px;
+  font-weight: 500;
 }
 
 .completion-score-card p {
-  color: #94a3b8;
-  font-size: 14px;
+  margin: 0;
+  color: var(--space-muted, #a0a3c2);
+  font-size: 12px;
 }
 
 /* Performance metrics */
@@ -323,14 +581,13 @@
 .completion-metrics {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
+  gap: 15px;
 }
 
 .completion-metric {
-  padding: 22px;
-  background: #0c1524;
-  border: 1px solid rgba(148, 163, 184, 0.14);
-  border-radius: 13px;
+  min-width: 0;
+  padding: 21px;
+  border-radius: 16px;
 }
 
 .completion-metric-heading {
@@ -342,148 +599,165 @@
 }
 
 .completion-metric-heading span {
-  color: #cbd5e1;
-  font-size: 14px;
+  color: var(--space-muted, #a0a3c2);
+  font-size: 12px;
 }
 
 .completion-metric-heading strong {
-  color: #22d3ee;
-  font-size: 15px;
+  color: var(--space-text, #f2f2ff);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
 }
 
 .completion-progress {
   width: 100%;
-  height: 8px;
+  height: 7px;
   overflow: hidden;
   border-radius: 20px;
-  background: #1e293b;
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .completion-progress > div {
   height: 100%;
   border-radius: inherit;
-  background: linear-gradient(90deg, #0891b2, #22d3ee);
+  background: linear-gradient(
+    90deg,
+    var(--space-purple, #9b7bff),
+    var(--space-blue, #55a5ff)
+  );
+  box-shadow: 0 0 12px rgba(155, 123, 255, 0.3);
   transition: width 0.6s ease;
 }
 
-/* Strongest and weakest areas */
+/* Strengths and improvements */
 
 .completion-insights {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
+  gap: 15px;
 }
 
 .completion-insights > div {
-  padding: 23px;
-  background: #0c1524;
-  border: 1px solid rgba(148, 163, 184, 0.14);
-  border-radius: 13px;
-}
-
-.completion-insights > div:first-child {
-  border-color: rgba(34, 211, 238, 0.25);
-}
-
-.completion-insights > div:last-child {
-  border-color: rgba(167, 139, 250, 0.25);
-}
-
-.completion-insights h4 {
-  margin-bottom: 12px;
-  color: #a5b4fc;
-  font-size: 13px;
-}
-
-.completion-insights p {
-  margin-bottom: 10px;
-  color: #cbd5e1;
-  font-size: 15px;
-}
-
-.completion-insights strong {
-  color: #22d3ee;
-  font-size: 24px;
-}
-
-/* Completion button */
-
-.interview-completion .resume-continue-button {
-  align-self: flex-start;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 16px 22px;
-  border: none;
-  border-radius: 9px;
-  background: #22d3ee;
-  color: #08202c;
-  font-weight: 700;
-  cursor: pointer;
+  min-width: 0;
+  padding: 22px;
+  border-radius: 16px;
   transition: 0.2s ease;
 }
 
-.interview-completion .resume-continue-button:hover {
-  background: #67e8f9;
-  transform: translateY(-2px);
+.completion-insights > div:hover {
+  border-color: var(--space-border-hover, rgba(157, 135, 255, 0.35));
+  background: var(--space-surface-light, rgba(29, 33, 62, 0.72));
 }
 
-/* Mobile responsiveness */
+.completion-insights h4 {
+  margin: 0 0 12px;
+  color: var(--space-muted, #a0a3c2);
+  font-size: 11px;
+  font-weight: 700;
+}
 
-@media (max-width: 650px) {
-  .completion-header h2 {
-    font-size: 25px;
+.completion-insights p {
+  margin: 0 0 9px;
+  color: var(--space-text, #f2f2ff);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.completion-insights strong {
+  color: var(--space-purple, #9b7bff);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 23px;
+}
+
+.interview-completion .resume-continue-button {
+  margin-top: 3px;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+  .interview-heading {
+    margin-bottom: 25px;
+  }
+}
+
+@media (max-width: 700px) {
+  .interview-heading h1 {
+    font-size: 30px;
   }
 
-  .completion-score-card {
-    padding: 23px;
+  .interview-heading p {
+    font-size: 13px;
   }
 
-  .completion-score-card h1 {
-    font-size: 43px;
+  .interview-progress {
+    top: 8px;
+  }
+
+  .interview-question-card,
+  .interview-answer-card,
+  .evaluation-results {
+    padding: 20px;
+  }
+
+  .interview-question-card h3 {
+    font-size: 19px;
+  }
+
+  .interview-question-card p,
+  .evaluation-feedback p {
+    font-size: 12px;
+  }
+
+  .interview-answer-card textarea {
+    min-height: 175px;
+    padding: 14px;
+    font-size: 13px;
+  }
+
+  .interview-page .resume-continue-button {
+    width: 100%;
+    justify-content: center;
   }
 
   .completion-metrics,
   .completion-insights {
     grid-template-columns: 1fr;
   }
+}
 
-  .completion-metric,
-  .completion-insights > div {
-    padding: 18px;
+@media (max-width: 390px) {
+  .interview-heading h1 {
+    font-size: 26px;
+  }
+
+  .interview-progress {
+    padding: 12px;
+    font-size: 11px;
+  }
+
+  .interview-question-card h3 {
+    font-size: 17px;
+  }
+
+  .completion-score-card h1 {
+    font-size: 45px;
   }
 }
 
-/* Mobile text wrapping and spacing fixes */
-@media (max-width: 650px) {
-  .interview-main,
-  .interview-workspace {
-    width: 100%;
-    min-width: 0;
-    box-sizing: border-box;
-  }
+/* =========================================
+   ACCESSIBILITY
+========================================= */
 
-  .interview-question-card,
-  .interview-answer-card,
-  .evaluation-results {
-    min-width: 0;
-    box-sizing: border-box;
-  }
-
-  .interview-question-card h3,
-  .interview-question-card p,
-  .interview-heading p,
-  .evaluation-results p,
-  .evaluation-feedback p {
-    text-align: left;
-    letter-spacing: normal;
-    word-spacing: normal;
-    overflow-wrap: anywhere;
-    word-break: normal;
-    line-height: 1.7;
-  }
-
-  .interview-answer-card textarea {
-    max-width: 100%;
+@media (prefers-reduced-motion: reduce) {
+  .interview-page *,
+  .interview-page *::before,
+  .interview-page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

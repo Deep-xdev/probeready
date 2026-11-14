@@ -1,4 +1,5 @@
 
+import { useState } from "react";
 import {
   ArrowRight,
   BrainCircuit,
@@ -10,51 +11,74 @@ import {
   ShieldCheck,
   Zap,
   CheckCircle2,
-  Menu
+  Menu,
+  X,
+  Sparkles,
+  Orbit,
+  Activity,
+  Code2,
+  Layers3,
+  AudioWaveform,
+  ScanSearch,
+  ChevronRight
 } from "lucide-react";
 
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
+
 import { InterviewProvider } from "./context/InterviewContext";
-import Interview from "./pages/Interview";
-import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import Dashboard from "./pages/Dashboard";
 import Resume from "./pages/Resume";
+import Interview from "./pages/Interview";
 import InterviewReport from "./pages/InterviewReport";
 import Analytics from "./pages/Analytics";
+
+import "./App.css";
 
 const features = [
   {
     icon: FileSearch,
+    number: "01",
     title: "Resume Intelligence",
     description:
       "Extract skills, projects and technical claims directly from your resume."
   },
   {
     icon: BrainCircuit,
+    number: "02",
     title: "Personalized Questions",
     description:
       "Generate interview questions based on what you actually claim to know."
   },
   {
     icon: MessageSquareText,
+    number: "03",
     title: "AI Mock Interviews",
     description:
       "Experience realistic interviews with questions that adapt to your answers."
   },
   {
     icon: Target,
+    number: "04",
     title: "Intelligent Evaluation",
     description:
       "Get meaningful feedback on technical correctness, coverage and clarity."
   },
   {
     icon: Mic,
+    number: "05",
     title: "Communication Analytics",
     description:
       "Understand your communication through planned voice-based feedback."
   },
   {
     icon: ChartNoAxesCombined,
+    number: "06",
     title: "Career Intelligence",
     description:
       "Identify knowledge gaps and discover what you should improve next."
@@ -62,155 +86,284 @@ const features = [
 ];
 
 const steps = [
-  "Upload your resume",
-  "Let AI identify your claims",
-  "Face personalized questions",
-  "Get evaluated and improve"
+  {
+    number: "01",
+    title: "Upload your resume",
+    description: "Give ProbeReady a picture of your experience."
+  },
+  {
+    number: "02",
+    title: "Discover your claims",
+    description: "AI identifies the skills and projects you mention."
+  },
+  {
+    number: "03",
+    title: "Enter the interview",
+    description: "Face questions tailored to your actual experience."
+  },
+  {
+    number: "04",
+    title: "Understand your gaps",
+    description: "Get evaluated and see exactly what to improve."
+  }
 ];
 
 function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const closeMenu = () => setMenuOpen(false);
+
   return (
     <nav className="navbar">
-      <a href="#" className="brand">
+      <Link to="/" className="brand" onClick={closeMenu}>
         <span className="brand-icon">
-          <BrainCircuit size={23} />
+          <BrainCircuit size={21} />
         </span>
-        Probe<span>Ready</span>
-      </a>
+        <span>Probe<span className="brand-accent">Ready</span></span>
+      </Link>
 
-      <div className="nav-links">
-        <a href="#how-it-works">How it works</a>
-        <a href="#features">Features</a>
-        <a href="#about">About</a>
+      <div
+        id="landing-navigation"
+        className={`nav-links ${menuOpen ? "nav-links-open" : ""}`}
+      >
+        <a href="#how-it-works" onClick={closeMenu}>How it works</a>
+        <a href="#features" onClick={closeMenu}>Features</a>
+        <a href="#about" onClick={closeMenu}>About</a>
+
+        <Link
+          to="/dashboard"
+          className="mobile-nav-link"
+          onClick={closeMenu}
+        >
+          Enter workspace <ArrowRight size={16} />
+        </Link>
       </div>
 
-      <a href="/dashboard" className="nav-button">
-        Get Started <ArrowRight size={16} />
-      </a>
+      <Link to="/dashboard" className="nav-button">
+        Launch workspace <ArrowRight size={15} />
+      </Link>
 
-      <button className="mobile-menu" aria-label="Open menu">
-        <Menu />
+      <button
+        type="button"
+        className="mobile-menu"
+        onClick={() => setMenuOpen(previous => !previous)}
+        aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+        aria-expanded={menuOpen}
+        aria-controls="landing-navigation"
+      >
+        {menuOpen ? <X size={21} /> : <Menu size={21} />}
       </button>
     </nav>
+  );
+}
+
+function SpatialCore() {
+  return (
+    <div className="spatial-scene" aria-label="ProbeReady AI interview intelligence visualization">
+      <div className="scene-ambient scene-ambient-one" />
+      <div className="scene-ambient scene-ambient-two" />
+      <div className="scene-grid" />
+
+      <div className="scene-coordinate coordinate-one">INTELLIGENCE / 001</div>
+      <div className="scene-coordinate coordinate-two">SYSTEM ONLINE</div>
+
+      <div className="orbit orbit-horizontal" />
+      <div className="orbit orbit-vertical" />
+      <div className="orbit orbit-diagonal" />
+
+      <div className="orbit-node orbit-node-one">
+        <span />
+      </div>
+      <div className="orbit-node orbit-node-two">
+        <span />
+      </div>
+      <div className="orbit-node orbit-node-three">
+        <span />
+      </div>
+
+      <div className="core-halo" />
+      <div className="core-shell">
+        <div className="core-inner">
+          <div className="core-rings">
+            <div className="core-ring core-ring-one" />
+            <div className="core-ring core-ring-two" />
+            <div className="core-ring core-ring-three" />
+          </div>
+          <div className="core-symbol">
+            <BrainCircuit size={48} strokeWidth={1.15} />
+          </div>
+          <div className="core-center-dot" />
+        </div>
+      </div>
+
+      <div className="core-caption">
+        <span className="core-caption-dot" />
+        <span>PROBEREADY INTELLIGENCE</span>
+      </div>
+
+      <div className="spatial-panel panel-resume">
+        <div className="panel-topline">
+          <span className="panel-icon purple-icon"><FileSearch size={15} /></span>
+          <span>RESUME SCAN</span>
+          <span className="panel-status">COMPLETE</span>
+        </div>
+        <div className="panel-main-value">12 <small>claims identified</small></div>
+        <div className="panel-mini-tags">
+          <span>React</span>
+          <span>Python</span>
+          <span>RAG</span>
+        </div>
+        <div className="panel-bottom-line">
+          <span className="mini-bar"><i /></span>
+          <span>PROFILE ANALYZED</span>
+        </div>
+      </div>
+
+      <div className="spatial-panel panel-interview">
+        <div className="panel-topline">
+          <span className="panel-icon cyan-icon"><MessageSquareText size={15} /></span>
+          <span>LIVE INTERVIEW</span>
+          <span className="recording-dot" />
+        </div>
+        <p className="panel-question">
+          Why did you choose FAISS for vector similarity search?
+        </p>
+        <div className="panel-interview-bottom">
+          <span>QUESTION 04</span>
+          <span className="difficulty-tag">INTERMEDIATE</span>
+        </div>
+      </div>
+
+      <div className="spatial-panel panel-score">
+        <div className="panel-topline">
+          <span className="panel-icon green-icon"><Target size={15} /></span>
+          <span>ANSWER EVALUATION</span>
+        </div>
+        <div className="score-display">
+          <strong>7.5</strong>
+          <span>/ 10</span>
+        </div>
+        <div className="score-meter"><i /></div>
+        <p className="score-feedback">
+          <CheckCircle2 size={13} />
+          Strong technical foundation
+        </p>
+      </div>
+
+      <div className="spatial-panel panel-signal">
+        <div className="signal-icon"><AudioWaveform size={19} /></div>
+        <div>
+          <span>ADAPTIVE ENGINE</span>
+          <strong>Reasoning detected</strong>
+        </div>
+        <Activity size={16} className="signal-activity" />
+      </div>
+
+      <div className="scene-bottom-label">
+        <span>01</span>
+        <span className="scene-bottom-line" />
+        <span>YOUR KNOWLEDGE, UNDER THE LENS</span>
+      </div>
+    </div>
   );
 }
 
 function Hero() {
   return (
     <section className="hero" id="about">
-      <div className="hero-content">
+      <div className="hero-background">
+        <div className="hero-background-glow" />
+        <div className="hero-background-grid" />
+        <div className="hero-star star-one" />
+        <div className="hero-star star-two" />
+        <div className="hero-star star-three" />
+      </div>
+
+      <div className="hero-copy">
         <div className="announcement">
-          <Zap size={14} />
-          <span>INTERVIEW PREPARATION, REIMAGINED</span>
+          <span className="announcement-icon"><Sparkles size={13} /></span>
+          <span>AN INTERVIEW INTELLIGENCE SYSTEM</span>
+          <span className="announcement-line" />
         </div>
 
         <h1>
-          Don't just claim it.
+          Your resume
           <br />
-          <span>Prove you know it.</span>
+          makes a <span>claim.</span>
+          <br />
+          We test the
+          <br />
+          <span className="hero-gradient-text">knowledge.</span>
         </h1>
 
         <p className="hero-description">
-          Your resume tells the interviewer what you know.
-          ProbeReady finds out whether you can actually prove it.
-          Practice smarter with personalized AI interviews.
+          ProbeReady turns your resume into a personalized interview.
+          It challenges your technical claims, examines your reasoning,
+          and shows you where your understanding actually stands.
         </p>
 
         <div className="hero-actions">
-          <a href="/dashboard" className="primary-button">
-            Start your preparation <ArrowRight size={18} />
-          </a>
-
-          <a href="#how-it-works" className="secondary-button">
-            Explore how it works
+          <Link to="/dashboard" className="primary-button hero-primary">
+            Enter the workspace <ArrowRight size={17} />
+          </Link>
+          <a href="#how-it-works" className="hero-secondary">
+            Explore the system <span><ChevronRight size={16} /></span>
           </a>
         </div>
 
-        <div className="hero-trust">
-          <ShieldCheck size={17} />
+        <div className="hero-proof">
+          <ShieldCheck size={16} />
           <span>Built around your skills, projects and real understanding.</span>
         </div>
-      </div>
 
-      <div className="hero-visual">
-        <div className="visual-glow"></div>
-
-        <div className="preview-card">
-          <div className="preview-header">
-            <div>
-              <span className="preview-label">LIVE INTERVIEW</span>
-              <h3>Technical Assessment</h3>
-            </div>
-            <span className="live-indicator">● LIVE</span>
-          </div>
-
-          <div className="question-box">
-            <span className="question-label">QUESTION 04</span>
-            <h3>
-              Why did you choose FAISS for vector similarity search
-              in your RAG application?
-            </h3>
-            <div className="question-tags">
-              <span>RAG</span>
-              <span>FAISS</span>
-              <span>Intermediate</span>
-            </div>
-          </div>
-
-          <div className="evaluation">
-            <div className="evaluation-top">
-              <span>YOUR PERFORMANCE</span>
-              <span className="score">7.5/10</span>
-            </div>
-
-            <div className="progress-track">
-              <div className="progress-fill"></div>
-            </div>
-
-            <div className="evaluation-feedback">
-              <CheckCircle2 size={16} />
-              <span>
-                Good understanding. Let's explore your technical reasoning.
-              </span>
-            </div>
-          </div>
-
-          <div className="next-question">
-            <span>ADAPTIVE FOLLOW-UP</span>
-            <ArrowRight size={18} />
-          </div>
-        </div>
-
-        <div className="floating-tag">
-          <BrainCircuit size={17} />
-          <span>AI-powered evaluation</span>
+        <div className="hero-index">
+          <span className="hero-index-number">01</span>
+          <span className="hero-index-line" />
+          <span>FROM CLAIM TO CONFIDENCE</span>
         </div>
       </div>
+
+      <SpatialCore />
     </section>
   );
 }
 
 function HowItWorks() {
   return (
-    <section className="section how-section" id="how-it-works">
-      <div className="section-heading">
-        <span className="eyebrow">THE PROCESS</span>
-        <h2>
-          Your preparation.
-          <span> A smarter approach.</span>
-        </h2>
+    <section className="section process-section" id="how-it-works">
+      <div className="section-kicker">
+        <span>THE PROTOCOL</span>
+        <span className="kicker-line" />
+        <span>01 — 04</span>
+      </div>
+
+      <div className="section-heading process-heading">
+        <div>
+          <h2>
+            Four stages.
+            <br />
+            <span>One honest assessment.</span>
+          </h2>
+        </div>
         <p>
-          From your resume to your next interview, every step
-          is designed around your actual knowledge.
+          No generic question dumps. Your preparation begins with your
+          experience and gets more specific with every answer.
         </p>
       </div>
 
-      <div className="steps-grid">
+      <div className="process-list">
         {steps.map((step, index) => (
-          <div className="step-card" key={step}>
-            <span className="step-number">0{index + 1}</span>
-            <h3>{step}</h3>
-          </div>
+          <article className="process-item" key={step.number}>
+            <div className="process-number">{step.number}</div>
+            <div className="process-marker">
+              <span />
+            </div>
+            <div className="process-copy">
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </div>
+            <span className="process-index">PHASE {index + 1}</span>
+          </article>
         ))}
       </div>
     </section>
@@ -220,27 +373,37 @@ function HowItWorks() {
 function Features() {
   return (
     <section className="section features-section" id="features">
-      <div className="section-heading">
-        <span className="eyebrow">WHAT WE OFFER</span>
+      <div className="section-kicker">
+        <span>THE INTELLIGENCE LAYER</span>
+        <span className="kicker-line" />
+        <span>CAPABILITIES</span>
+      </div>
+
+      <div className="section-heading features-heading">
         <h2>
-          Everything you need to
-          <span> prove your skills.</span>
+          More than a question bank.
+          <br />
+          <span>A system that understands context.</span>
         </h2>
         <p>
-          An intelligent interview preparation ecosystem,
-          built around you.
+          Every capability works toward one goal: finding the difference
+          between what you claim and what you can demonstrate.
         </p>
       </div>
 
       <div className="features-grid">
-        {features.map(({ icon: Icon, title, description }) => (
+        {features.map(({ icon: Icon, number, title, description }) => (
           <article className="feature-card" key={title}>
-            <div className="feature-icon">
-              <Icon size={23} />
+            <div className="feature-card-top">
+              <span className="feature-icon"><Icon size={21} /></span>
+              <span className="feature-number">{number}</span>
             </div>
             <h3>{title}</h3>
             <p>{description}</p>
-            <ArrowRight className="feature-arrow" size={18} />
+            <div className="feature-card-bottom">
+              <span>EXPLORE CAPABILITY</span>
+              <ArrowRight size={15} />
+            </div>
           </article>
         ))}
       </div>
@@ -251,19 +414,28 @@ function Features() {
 function CTA() {
   return (
     <section className="cta-section" id="start">
+      <div className="cta-orbit cta-orbit-one" />
+      <div className="cta-orbit cta-orbit-two" />
       <div className="cta-content">
-        <span className="eyebrow">YOUR NEXT INTERVIEW STARTS HERE</span>
+        <span className="cta-kicker"><Zap size={13} /> YOUR NEXT STEP</span>
         <h2>
-          Ready to put your
-          <span> knowledge to the test?</span>
+          Don't prepare to
+          <br />
+          <span>sound convincing.</span>
+          <br />
+          Prepare to be convincing.
         </h2>
         <p>
-          Stop memorizing generic answers. Start understanding
-          what you really know.
+          Put your knowledge under pressure. Find your gaps.
+          Build confidence that has evidence behind it.
         </p>
-        <button className="primary-button">
-          Start preparing <ArrowRight size={18} />
-        </button>
+        <Link to="/dashboard" className="primary-button cta-button">
+          Start your assessment <ArrowRight size={17} />
+        </Link>
+      </div>
+      <div className="cta-side-note">
+        <Orbit size={17} />
+        <span>THE PROBEREADY SYSTEM</span>
       </div>
     </section>
   );
@@ -272,18 +444,12 @@ function CTA() {
 function Footer() {
   return (
     <footer className="footer">
-      <a href="#" className="brand">
-        <span className="brand-icon">
-          <BrainCircuit size={21} />
-        </span>
-        Probe<span>Ready</span>
-      </a>
-
+      <Link to="/" className="brand">
+        <span className="brand-icon"><BrainCircuit size={19} /></span>
+        <span>Probe<span className="brand-accent">Ready</span></span>
+      </Link>
       <p>Built to test what you actually know.</p>
-
-      <span className="copyright">
-        © 2026 ProbeReady. All rights reserved.
-      </span>
+      <span className="copyright">© 2026 ProbeReady. All rights reserved.</span>
     </footer>
   );
 }
@@ -303,7 +469,6 @@ function LandingPage() {
   );
 }
 
-
 function App() {
   return (
     <InterviewProvider>
@@ -315,9 +480,9 @@ function App() {
           <Route path="/resume" element={<Resume />} />
           <Route path="/interview" element={<Interview />} />
           <Route
-  path="/interview-report/:sessionId"
-  element={<InterviewReport />}
-/>
+            path="/interview-report/:sessionId"
+            element={<InterviewReport />}
+          />
         </Routes>
       </BrowserRouter>
     </InterviewProvider>

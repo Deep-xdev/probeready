@@ -1,0 +1,19 @@
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  color: #f1f1ee;
+  text-decoration: none;
+
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+
+  white-space: nowrap;
+}
+
+.brand-logo svg {
+  flex-shrink: 0;
+  color: #f1f1ee;
+}

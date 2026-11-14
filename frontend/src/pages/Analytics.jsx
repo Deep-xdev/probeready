@@ -2,7 +2,6 @@
 import "./Analytics.css";
 import { useEffect, useState } from "react";
 import {
-  ArrowLeft,
   BrainCircuit,
   Target,
   MessageSquare,
@@ -11,8 +10,8 @@ import {
   Activity,
   BarChart3
 } from "lucide-react";
-import { Link } from "react-router-dom";
 
+import WorkspaceLayout from "../components/WorkspaceLayout";
 
 function Analytics() {
   const [analytics, setAnalytics] = useState(null);
@@ -26,14 +25,12 @@ function Analytics() {
         const data = await response.json();
 
         if (!response.ok) {
-          throw new Error(
-            data.detail || "Failed to load analytics."
-          );
+          throw new Error(data.detail || "Failed to load analytics.");
         }
 
         setAnalytics(data.overview);
       } catch (err) {
-        setError(err.message);
+        setError(err.message || "Something went wrong.");
       } finally {
         setLoading(false);
       }
@@ -43,21 +40,40 @@ function Analytics() {
   }, []);
 
   if (loading) {
-    return <div className="analytics-page">Loading analytics...</div>;
+    return (
+      <WorkspaceLayout title="Analytics" activePage="/analytics">
+        <div className="analytics-page">
+          <div className="analytics-state">
+            <div className="analytics-loader" />
+            <p>Loading your performance data...</p>
+          </div>
+        </div>
+      </WorkspaceLayout>
+    );
   }
 
-  if (error) {
-    return <div className="analytics-page">Error: {error}</div>;
+  if (error || !analytics) {
+    return (
+      <WorkspaceLayout title="Analytics" activePage="/analytics">
+        <div className="analytics-page">
+          <div className="analytics-state analytics-error">
+            <Activity size={26} />
+            <h3>Unable to load analytics</h3>
+            <p>{error || "No analytics data is available."}</p>
+          </div>
+        </div>
+      </WorkspaceLayout>
+    );
   }
 
   const {
-  total_interviews,
-  evaluated_answers,
-  overall_average,
-  score_trend,
-  skill_performance,
-  weakest_skill
-} = analytics;
+    total_interviews = 0,
+    evaluated_answers = 0,
+    overall_average = 0,
+    score_trend = [],
+    skill_performance = [],
+    weakest_skill = null
+  } = analytics;
 
   const latestScore = score_trend.length
     ? score_trend[score_trend.length - 1].score
@@ -67,117 +83,133 @@ function Analytics() {
     ? score_trend[score_trend.length - 2].score
     : null;
 
-  const improvement = latestScore !== null && previousScore !== null
-    ? Number((latestScore - previousScore).toFixed(1))
-    : null;
+  const improvement =
+    latestScore !== null && previousScore !== null
+      ? Number((latestScore - previousScore).toFixed(1))
+      : null;
+
+  const getScoreWidth = (score) =>
+    `${Math.max(0, Math.min(100, Number(score || 0) * 10))}%`;
 
   return (
-    <div className="analytics-page">
-
-      <header className="analytics-header">
-        <Link to="/dashboard" className="analytics-back">
-          <ArrowLeft size={18} /> Dashboard
-        </Link>
-
-        <div className="analytics-brand">
-          <BrainCircuit size={24} />
-          ProbeReady
-        </div>
-      </header>
-
-      <main className="analytics-container">
-
+    <WorkspaceLayout title="Analytics" activePage="/analytics">
+      <div className="analytics-page">
         <div className="analytics-heading">
-          <span>PERFORMANCE INTELLIGENCE</span>
-          <h1>Your Analytics</h1>
-          <p>
-            Understand your interview performance,
-            identify weaknesses and track your progress.
-          </p>
+          <div>
+            <span className="analytics-eyebrow">
+              <BrainCircuit size={14} />
+              PERFORMANCE INTELLIGENCE
+            </span>
+            <h1>Your <span>Analytics</span></h1>
+            <p>
+              Understand your interview performance, identify weaknesses
+              and track your progress over time.
+            </p>
+          </div>
         </div>
 
         <section className="analytics-stats">
-
           <div className="analytics-card">
-            <div className="analytics-card-icon">
-              <MessageSquare />
+            <div className="analytics-card-top">
+              <div className="analytics-card-icon">
+                <MessageSquare size={20} />
+              </div>
+              <span className="analytics-card-label">01</span>
             </div>
-            <span>Total Interviews</span>
+            <span className="analytics-card-title">Total Interviews</span>
             <h2>{total_interviews}</h2>
+            <p>Interview sessions completed</p>
           </div>
 
           <div className="analytics-card">
-            <div className="analytics-card-icon">
-              <Target />
+            <div className="analytics-card-top">
+              <div className="analytics-card-icon">
+                <Target size={20} />
+              </div>
+              <span className="analytics-card-label">02</span>
             </div>
-            <span>Evaluated Answers</span>
+            <span className="analytics-card-title">Evaluated Answers</span>
             <h2>{evaluated_answers}</h2>
+            <p>Answers assessed by ProbeReady</p>
           </div>
 
           <div className="analytics-card">
-            <div className="analytics-card-icon">
-              <BarChart3 />
+            <div className="analytics-card-top">
+              <div className="analytics-card-icon">
+                <BarChart3 size={20} />
+              </div>
+              <span className="analytics-card-label">03</span>
             </div>
-            <span>Overall Average</span>
-            <h2>{overall_average.toFixed(1)}/10</h2>
+            <span className="analytics-card-title">Overall Average</span>
+            <h2>{Number(overall_average).toFixed(1)}<small>/10</small></h2>
+            <p>Average across evaluated answers</p>
           </div>
 
           <div className="analytics-card">
-            <div className="analytics-card-icon">
-              <Activity />
+            <div className="analytics-card-top">
+              <div className="analytics-card-icon">
+                <Activity size={20} />
+              </div>
+              <span className="analytics-card-label">04</span>
             </div>
-            <span>Latest Performance</span>
+            <span className="analytics-card-title">Latest Performance</span>
             <h2>
               {latestScore === null
                 ? "N/A"
-                : `${latestScore.toFixed(1)}/10`}
+                : <>{Number(latestScore).toFixed(1)}<small>/10</small></>}
             </h2>
 
-            {improvement !== null && (
-              <small className={improvement >= 0 ? "positive-change" : "negative-change"}>
-                {improvement >= 0 ? (
-                  <TrendingUp size={14} />
-                ) : (
-                  <TrendingDown size={14} />
-                )}
-                {improvement > 0 ? "+" : ""}{improvement} points
-              </small>
+            {improvement !== null ? (
+              <div className={`analytics-change ${improvement >= 0 ? "positive" : "negative"}`}>
+                {improvement >= 0
+                  ? <TrendingUp size={14} />
+                  : <TrendingDown size={14} />}
+                <span>
+                  {improvement > 0 ? "+" : ""}{improvement} points
+                </span>
+              </div>
+            ) : (
+              <p>Complete another interview to compare</p>
             )}
           </div>
-
         </section>
 
         <section className="analytics-panel">
           <div className="analytics-panel-heading">
             <div>
-              <span>PERFORMANCE HISTORY</span>
+              <span className="analytics-eyebrow">PERFORMANCE HISTORY</span>
               <h2>Interview Score Trend</h2>
+              <p>Track your scores across completed interviews.</p>
             </div>
-            <TrendingUp size={22} />
+            <div className="analytics-panel-icon">
+              <TrendingUp size={21} />
+            </div>
           </div>
 
           {score_trend.length === 0 ? (
-            <p>No completed interviews available yet.</p>
+            <div className="analytics-empty">
+              No completed interviews available yet.
+            </div>
           ) : (
             <div className="trend-list">
               {score_trend.map((item) => (
                 <div className="trend-item" key={item.session_id}>
                   <div className="trend-label">
                     <span>Interview #{item.session_id}</span>
-                    <strong>{item.score.toFixed(1)}/10</strong>
+                    <strong>{Number(item.score).toFixed(1)}/10</strong>
                   </div>
 
                   <div className="trend-track">
                     <div
                       className="trend-fill"
-                      style={{
-                        width: `${Math.max(0, Math.min(100, item.score * 10))}%`
-                      }}
+                      style={{ width: getScoreWidth(item.score) }}
                     />
                   </div>
 
                   <small>
-                    {new Date(item.date).toLocaleDateString()}
+                    {item.date
+                      ? new Date(item.date).toLocaleDateString()
+                      : "Date unavailable"}
                   </small>
                 </div>
               ))}
@@ -185,76 +217,83 @@ function Analytics() {
           )}
         </section>
 
+        <section className="analytics-panel weakness-panel">
+          <div className="analytics-panel-heading">
+            <div>
+              <span className="analytics-eyebrow">PERSONALIZED DIAGNOSIS</span>
+              <h2>Weakness Detection</h2>
+              <p>Find the skill area that needs the most attention.</p>
+            </div>
+            <div className="analytics-panel-icon">
+              <Target size={21} />
+            </div>
+          </div>
 
+          {!weakest_skill ? (
+            <div className="analytics-empty">
+              Complete and evaluate an interview to identify your weakest skill.
+            </div>
+          ) : (
+            <div className="weakness-content">
+              <div className="weakness-highlight">
+                <span className="analytics-eyebrow">YOUR WEAKEST SKILL</span>
+                <h3>{weakest_skill.skill}</h3>
+                <strong>
+                  {Number(weakest_skill.average_score).toFixed(1)}
+                  <small>/10</small>
+                </strong>
+                <span className="weakness-status">
+                  {weakest_skill.status}
+                </span>
+              </div>
+
+              <div className="weakness-recommendation">
+                <span className="analytics-eyebrow">RECOMMENDED ACTION</span>
+                <h3>Where to focus next</h3>
+                <p>{weakest_skill.recommendation}</p>
+              </div>
+            </div>
+          )}
+        </section>
 
         <section className="analytics-panel">
           <div className="analytics-panel-heading">
             <div>
-
-<section className="analytics-panel weakness-panel">
-  <div className="analytics-panel-heading">
-    <div>
-      <span>PERSONALIZED DIAGNOSIS</span>
-      <h2>Weakness Detection</h2>
-    </div>
-    <Target size={22} />
-  </div>
-
-  {!weakest_skill ? (
-    <p>
-      Complete and evaluate an interview to identify your weakest skill.
-    </p>
-  ) : (
-    <div className="weakness-content">
-      <div className="weakness-highlight">
-        <span>YOUR WEAKEST SKILL</span>
-        <h3>{weakest_skill.skill}</h3>
-        <strong>
-          {weakest_skill.average_score.toFixed(1)}/10
-        </strong>
-        <small>{weakest_skill.status}</small>
-      </div>
-
-      <div className="weakness-recommendation">
-        <span>RECOMMENDED ACTION</span>
-        <p>{weakest_skill.recommendation}</p>
-      </div>
-    </div>
-  )}
-</section>
-
-              <span>KNOWLEDGE BREAKDOWN</span>
+              <span className="analytics-eyebrow">KNOWLEDGE BREAKDOWN</span>
               <h2>Category Performance</h2>
+              <p>See how your evaluated answers perform by skill.</p>
             </div>
-            <BrainCircuit size={22} />
+            <div className="analytics-panel-icon">
+              <BrainCircuit size={21} />
+            </div>
           </div>
 
           {skill_performance.length === 0 ? (
-            <p>No category performance data available yet.</p>
+            <div className="analytics-empty">
+              No category performance data available yet.
+            </div>
           ) : (
             <div className="category-list">
               {skill_performance.map((skill) => (
                 <div className="category-item" key={skill.skill}>
                   <div className="category-info">
-  <div className="skill-title">
-    <strong>{skill.skill}</strong>
-
-    <span className={`proficiency-badge ${skill.proficiency.toLowerCase()}`}>
-      {skill.proficiency}
-    </span>
-  </div>
-
-  <span>
-    {skill.average_score.toFixed(1)}/10
-  </span>
-</div>
+                    <div className="skill-title">
+                      <strong>{skill.skill}</strong>
+                      <span
+                        className={`proficiency-badge ${(skill.proficiency || "").toLowerCase()}`}
+                      >
+                        {skill.proficiency || "Unrated"}
+                      </span>
+                    </div>
+                    <span>
+                      {Number(skill.average_score).toFixed(1)}/10
+                    </span>
+                  </div>
 
                   <div className="trend-track">
                     <div
                       className="trend-fill"
-                      style={{
-                        width: `${Math.max(0, Math.min(100, skill.average_score * 10))}%`
-                      }}
+                      style={{ width: getScoreWidth(skill.average_score) }}
                     />
                   </div>
 
@@ -266,9 +305,8 @@ function Analytics() {
             </div>
           )}
         </section>
-
-      </main>
-    </div>
+      </div>
+    </WorkspaceLayout>
   );
 }
 
