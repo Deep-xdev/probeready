@@ -1,57 +1,64 @@
-ProbeReady
+# ProbeReady
 
-An Adaptive AI Interview Coach That Tests What Candidates Actually Claim.
+> An adaptive AI interview coach that tests what candidates actually claim.
 
-ProbeReady is an AI-powered interview preparation platform that evaluates candidates based on their actual skills, resume claims, and technical understanding.
+ProbeReady is an AI-powered interview preparation platform that evaluates candidates based on their skills, resume claims, and technical understanding. Rather than relying on generic question banks, it analyzes a candidate's resume, generates personalized interview questions, and provides structured feedback to help identify knowledge gaps.
 
-Instead of relying on generic question banks, ProbeReady analyzes a candidate's resume, generates personalized interview questions, and provides structured feedback to help identify knowledge gaps.
+## Table of Contents
 
----
+- [Features](#features)
+- [Screenshots](#screenshots)
+- [How It Works](#how-it-works)
+- [Technology Stack](#technology-stack)
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+- [Future Development](#future-development)
+- [Project Vision](#project-vision)
+- [Developer](#developer)
 
-Screenshots
+## Features
 
-<!-- Add your application screenshots here -->Dashboard| Resume Intelligence
-Add dashboard screenshot| Add resume screenshot
+- **Resume Intelligence:** Extracts skills, projects, education, experience, and technical claims from uploaded resumes.
+- **AI Question Generation:** Creates personalized technical questions based on resume information.
+- **Mock Interviews:** Provides an interactive environment for interview practice.
+- **Answer Evaluation:** Evaluates responses for technical accuracy, depth, clarity, and supporting evidence.
+- **Performance Analytics:** Displays interview scores, strengths, and areas for improvement.
+- **Adaptive Interviewing:** Adjusts question difficulty based on candidate performance.
 
-Mock Interview| Interview Report
-Add interview screenshot| Add report screenshot
+## Screenshots
 
----
+_Add application screenshots here when available._
 
-Features
+| Dashboard | Resume Intelligence |
+| --- | --- |
+| Add dashboard screenshot | Add resume screenshot |
 
-- Resume Intelligence: Extracts skills, projects, education, experience, and technical claims from uploaded resumes.
-- AI Question Generation: Generates personalized technical questions based on resume information.
-- Mock Interviews: Provides an interactive environment for interview practice.
-- Answer Evaluation: Evaluates responses based on technical accuracy, depth, clarity, and evidence.
-- Performance Analytics: Displays interview scores, strengths, and areas for improvement.
-- Adaptive Interviewing: Adjusts question difficulty based on candidate performance.
+| Mock Interview | Interview Report |
+| --- | --- |
+| Add interview screenshot | Add report screenshot |
 
----
-
-Technology Stack
-
-Frontend| Backend| Database| AI
-React.js| Python| SQLite| Groq API
-Vite| FastAPI| SQLAlchemy| LLM Integration
-JavaScript| REST API| | 
-
----
-
-How It Works
+## How It Works
 
 1. Upload your resume.
 2. ProbeReady extracts your skills, projects, and technical claims.
-3. AI generates personalized interview questions.
+3. The AI generates personalized interview questions.
 4. Participate in a mock interview.
 5. Receive AI-powered feedback and evaluation.
 6. Review your performance and identify areas for improvement.
 
----
+## Technology Stack
 
-Project Structure
+| Area | Technologies |
+| --- | --- |
+| Frontend | React, Vite, JavaScript |
+| Backend | Python, FastAPI, REST API |
+| Database | SQLite, SQLAlchemy |
+| AI | Groq API, LLM integration |
 
-ProbeReady/
+## Project Structure
+
+```text
+probeready/
 ├── backend/
 │   ├── main.py
 │   ├── ai_service.py
@@ -61,7 +68,6 @@ ProbeReady/
 │   ├── voice_service.py
 │   ├── database.py
 │   └── models.py
-│
 ├── frontend/
 │   ├── public/
 │   └── src/
@@ -69,90 +75,98 @@ ProbeReady/
 │       ├── context/
 │       ├── hooks/
 │       └── pages/
-│
 └── README.md
+```
 
----
+## Getting Started
 
-Getting Started
-
-Prerequisites
+### Prerequisites
 
 - Python
 - Node.js and npm
 - Git
-- Groq API key
+- A Groq API key
 
-1. Clone the Repository
+### 1. Clone the repository
 
+```bash
 git clone https://github.com/Deep-xdev/probeready.git
 cd probeready
+```
 
-2. Set Up the Backend
+### 2. Set up the backend
 
+```bash
 cd backend
 python -m venv venv
+```
 
-Activate the virtual environment.
+Activate the virtual environment:
 
-Windows
+**Windows**
 
+```powershell
 venv\Scripts\activate
+```
 
-Linux / macOS
+**Linux / macOS**
 
+```bash
 source venv/bin/activate
+```
 
-Install dependencies:
+Install the dependencies:
 
+```bash
 pip install -r requirements.txt
+```
 
-Create a ".env" file inside "backend/":
+Create a `.env` file in the `backend/` directory and add your Groq credentials:
 
+```dotenv
 GROQ_API_KEY=your_groq_api_key
 GROQ_MODEL=openai/gpt-oss-20b
+```
 
-Run the backend:
+Start the backend from the `backend/` directory:
 
+```bash
 uvicorn main:app --reload
+```
 
-API documentation: "http://localhost:8000/docs"
+The API documentation is available at [http://localhost:8000/docs](http://localhost:8000/docs).
 
-3. Set Up the Frontend
+### 3. Set up the frontend
 
-Open another terminal:
+In a second terminal, from the repository root:
 
+```bash
 cd frontend
 npm install
 npm run dev
+```
 
 Open the local development URL provided by Vite.
 
----
-
-Future Development
+## Future Development
 
 - User authentication and individual candidate profiles.
-- Secure user-specific data management.
+- Secure, user-specific data management.
 - Advanced voice-based interview experiences.
 - GitHub repository analysis for technical claim verification.
 - Improved adaptive interview workflows.
 - Personalized learning recommendations.
 
----
-
-Project Vision
+## Project Vision
 
 ProbeReady aims to make interview preparation more practical and evidence-driven by focusing on what candidates can actually explain and demonstrate, rather than what they can simply memorize.
 
----
+## Developer
 
-Developer
+**Deep-xdev**
 
-Deep-xdev
-
-- GitHub: https://github.com/Deep-xdev
-- Repository: https://github.com/Deep-xdev/probeready
+- [GitHub](https://github.com/Deep-xdev)
+- [Repository](https://github.com/Deep-xdev/probeready)
 
 ---
 
