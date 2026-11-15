@@ -13,13 +13,13 @@ export function InterviewProvider({ children }) {
   const [evaluations, setEvaluations] = useState([]);
 
   function startInterview(generatedQuestions, analysis, id) {
-  setQuestions(generatedQuestions);
-  setResumeAnalysis(analysis);
-  setSessionId(id);
-  setCurrentIndex(0);
-  setAnswers([]);
-  setEvaluations([]);
-}
+    setQuestions(generatedQuestions);
+    setResumeAnalysis(analysis);
+    setSessionId(id);
+    setCurrentIndex(0);
+    setAnswers([]);
+    setEvaluations([]);
+  }
 
   function saveAnswer(index, answer) {
     setAnswers((previous) => {
@@ -34,6 +34,22 @@ export function InterviewProvider({ children }) {
       const updated = [...previous];
       updated[index] = evaluation;
       return updated;
+    });
+  }
+
+  function addAdaptiveQuestion(question) {
+    setQuestions((previous) => {
+      // Prevent duplicate questions from being appended.
+      if (
+        previous.some(
+          (item) =>
+            item.question === question.question
+        )
+      ) {
+        return previous;
+      }
+
+      return [...previous, question];
     });
   }
 
@@ -59,6 +75,7 @@ export function InterviewProvider({ children }) {
         startInterview,
         saveAnswer,
         saveEvaluation,
+        addAdaptiveQuestion,
         resetInterview
       }}
     >

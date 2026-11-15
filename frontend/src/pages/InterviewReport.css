@@ -1,102 +1,368 @@
 
+/* ==========================================
+   PROBEREADY | SPATIAL GLASS WORKSPACE
+   Interview Report
+   Original Cosmic Background
+========================================== */
+
+/* DESIGN TOKENS */
+
 .report-page {
+  --space-bg: #071c39;
+  --space-border: rgba(194, 225, 255, 0.17);
+  --space-border-hover: rgba(211, 239, 255, 0.38);
+
+  --space-text: #eff8ff;
+  --space-muted: #b9d1e9;
+  --space-subtle: #91b2d3;
+
+  --space-cyan: #c8edff;
+  --space-green: #77e5c1;
+
+  position: relative;
+  isolation: isolate;
+
   min-height: 100vh;
-  background: #080D19;
-  color: #E5E7EB;
-  padding-bottom: 60px;
+  width: 100%;
+  min-width: 0;
+
+  overflow-x: clip;
+
+  color: var(--space-text);
+
+  font-family:
+    Inter,
+    Manrope,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  /* ORIGINAL PROBEREADY BACKGROUND */
+
+  background-color: #071c39;
+  background-image: url("/images/probeready-bg.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+
+  padding-bottom: 70px;
+  box-sizing: border-box;
 }
 
+.report-page *,
+.report-page *::before,
+.report-page *::after {
+  box-sizing: border-box;
+}
+
+/* ==========================================
+   DARK ATMOSPHERIC OVERLAY
+========================================== */
+
+.report-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(3, 17, 39, 0.28) 0%,
+      rgba(4, 23, 49, 0.43) 50%,
+      rgba(3, 17, 39, 0.66) 100%
+    ),
+    radial-gradient(
+      ellipse at 50% 20%,
+      rgba(40, 116, 190, 0.08),
+      transparent 65%
+    );
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
 .report-header {
-  height: 75px;
+  position: relative;
+  z-index: 2;
+
+  height: 76px;
   padding: 0 7%;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #1E293B;
+
+  background: rgba(5, 24, 54, 0.42);
+
+  backdrop-filter: blur(18px) saturate(135%);
+  -webkit-backdrop-filter: blur(18px) saturate(135%);
+
+  border-bottom: 1px solid var(--space-border);
 }
 
 .report-back {
   display: flex;
   align-items: center;
   gap: 9px;
-  color: #94A3B8;
+
+  color: var(--space-muted);
   text-decoration: none;
+
   font-size: 14px;
+  font-weight: 500;
+
+  transition: color 0.25s ease;
 }
 
 .report-back:hover {
-  color: #22D3EE;
+  color: var(--space-cyan);
 }
 
 .report-brand {
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #22D3EE;
+
+  color: var(--space-cyan);
+
   font-weight: 700;
   font-size: 19px;
+  letter-spacing: -0.3px;
 }
+
+.report-brand svg {
+  filter: drop-shadow(
+    0 0 9px rgba(183, 230, 255, 0.45)
+  );
+}
+
+/* ==========================================
+   MAIN CONTAINER
+========================================== */
 
 .report-container {
-  max-width: 1000px;
+  position: relative;
+  z-index: 1;
+
+  max-width: 1100px;
   width: 90%;
-  margin: 50px auto;
+
+  margin: 55px auto;
 }
 
+/* ==========================================
+   PAGE HEADING
+========================================== */
+
 .report-eyebrow {
-  color: #22D3EE;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 2px;
+  display: inline-block;
+
+  color: var(--space-cyan);
+
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 2.1px;
+
+  margin-bottom: 8px;
 }
 
 .report-container > h1 {
-  font-size: 34px;
   margin: 12px 0;
+
+  color: var(--space-text);
+
+  font-family:
+    "Cormorant Garamond",
+    "Times New Roman",
+    Georgia,
+    serif;
+
+  font-size: 42px;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+  line-height: 1.15;
 }
 
 .report-container > p {
-  color: #94A3B8;
-  font-size: 14px;
+  color: var(--space-subtle);
+
+  font-size: 13px;
+  letter-spacing: 0.2px;
 }
+
+/* ==========================================
+   SUMMARY CARDS
+========================================== */
 
 .report-summary {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-  margin: 35px 0 50px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 17px;
+
+  margin: 38px 0 50px;
 }
 
 .report-summary > div {
-  background: #111827;
-  border: 1px solid #263449;
-  border-radius: 14px;
-  padding: 24px;
+  position: relative;
+  isolation: isolate;
+
+  min-width: 0;
+  padding: 25px;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(137, 190, 238, 0.13),
+      rgba(45, 96, 153, 0.15) 45%,
+      rgba(7, 30, 61, 0.38)
+    );
+
+  border: 1px solid var(--space-border);
+  border-radius: 21px;
+
+  box-shadow:
+    0 22px 55px rgba(0, 10, 30, 0.20),
+    inset 0 1px 0 rgba(255, 255, 255, 0.09);
+
+  backdrop-filter: blur(16px) saturate(135%);
+  -webkit-backdrop-filter: blur(16px) saturate(135%);
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.report-summary > div::before {
+  position: absolute;
+  top: -75px;
+  right: -60px;
+  z-index: -1;
+
+  width: 180px;
+  height: 180px;
+
+  content: "";
+  pointer-events: none;
+
+  background: radial-gradient(
+    circle,
+    rgba(194, 231, 255, 0.12),
+    transparent 70%
+  );
+}
+
+.report-summary > div:hover {
+  transform: translateY(-4px);
+
+  border-color: var(--space-border-hover);
+
+  box-shadow:
+    0 24px 48px rgba(0, 18, 50, 0.25),
+    0 0 28px rgba(151, 213, 255, 0.08);
 }
 
 .report-summary span {
-  color: #94A3B8;
-  font-size: 13px;
+  color: var(--space-muted);
+
+  font-size: 12px;
+  font-weight: 500;
 }
 
 .report-summary h2 {
-  font-size: 27px;
   margin-top: 12px;
-  color: #22D3EE;
+
+  color: var(--space-cyan);
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 34px;
+  font-weight: 600;
 }
+
+/* ==========================================
+   QUESTION SECTION
+========================================== */
 
 .report-section-title {
-  font-size: 23px;
   margin-bottom: 22px;
+
+  color: var(--space-text);
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 29px;
+  font-weight: 600;
 }
 
+/* ==========================================
+   QUESTION CARD
+========================================== */
+
 .report-question {
-  background: #111827;
-  border: 1px solid #263449;
-  border-radius: 16px;
-  padding: 27px;
+  position: relative;
+  isolation: isolate;
+
+  min-width: 0;
+  padding: 28px;
+
   margin-bottom: 22px;
+  overflow: hidden;
+
+  background: rgba(9, 32, 65, 0.40);
+
+  border: 1px solid var(--space-border);
+  border-radius: 22px;
+
+  box-shadow:
+    0 22px 55px rgba(0, 10, 30, 0.20),
+    inset 0 1px 0 rgba(255, 255, 255, 0.09);
+
+  backdrop-filter: blur(16px) saturate(135%);
+  -webkit-backdrop-filter: blur(16px) saturate(135%);
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 }
+
+.report-question::before {
+  position: absolute;
+  top: -120px;
+  right: -110px;
+  z-index: -1;
+
+  width: 260px;
+  height: 260px;
+
+  content: "";
+  pointer-events: none;
+
+  background: radial-gradient(
+    circle,
+    rgba(174, 219, 255, 0.08),
+    transparent 70%
+  );
+}
+
+.report-question:hover {
+  border-color: var(--space-border-hover);
+}
+
+/* QUESTION HEADER */
 
 .report-question-heading {
   display: flex;
@@ -106,37 +372,71 @@
 }
 
 .report-question-heading > span:first-child {
-  color: #22D3EE;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
+  color: var(--space-cyan);
+
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 1.7px;
 }
 
 .report-question-score {
-  color: #A78BFA;
-  font-size: 13px;
+  flex-shrink: 0;
+
+  color: var(--space-cyan);
+
+  font-size: 12px;
   font-weight: 700;
+
+  padding: 7px 12px;
+
+  border-radius: 30px;
+
+  background: rgba(174, 220, 255, 0.10);
+  border: 1px solid rgba(195, 231, 255, 0.21);
 }
 
+/* QUESTION CONTENT */
+
 .report-question h3 {
-  font-size: 19px;
-  line-height: 1.6;
   margin: 20px 0 10px;
+
+  color: var(--space-text);
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.5;
 }
 
 .report-meta {
-  color: #94A3B8;
+  color: var(--space-subtle);
+
   font-size: 12px;
+  letter-spacing: 0.3px;
 }
+
+/* ==========================================
+   ANSWER AND FEEDBACK PANELS
+========================================== */
 
 .report-answer,
 .report-feedback,
 .report-strengths,
 .report-gaps {
   margin-top: 22px;
-  padding: 18px;
-  border-radius: 10px;
-  background: #0B1220;
+  padding: 19px;
+
+  background: rgba(6, 26, 54, 0.45);
+
+  border: 1px solid rgba(196, 229, 255, 0.12);
+  border-radius: 14px;
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .report-answer h4,
@@ -144,81 +444,185 @@
 .report-gaps h4 {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 12px;
+  gap: 9px;
+
+  margin: 0 0 12px;
+
+  color: var(--space-text);
+
   font-size: 14px;
+  font-weight: 650;
 }
 
 .report-answer p,
 .report-feedback p,
 .report-strengths p,
 .report-gaps p {
-  color: #CBD5E1;
-  font-size: 14px;
-  line-height: 1.7;
+  margin: 0 0 9px;
+
+  color: var(--space-muted);
+
+  font-size: 13px;
+  line-height: 1.8;
+
+  white-space: pre-wrap;
 }
 
+/* AI FEEDBACK */
+
 .report-feedback h4 {
-  margin-bottom: 10px;
-  color: #22D3EE;
+  margin: 0 0 12px;
+  color: var(--space-cyan);
 }
+
+/* ==========================================
+   EVALUATION METRICS
+========================================== */
 
 .report-scores {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
+
   margin-top: 20px;
 }
 
 .report-scores span {
-  background: #1E293B;
-  padding: 13px;
-  border-radius: 8px;
-  color: #CBD5E1;
-  font-size: 13px;
+  min-width: 0;
+  padding: 14px;
+
+  background: rgba(145, 195, 239, 0.09);
+
+  border: 1px solid rgba(196, 229, 255, 0.13);
+  border-radius: 12px;
+
+  color: var(--space-muted);
+
+  font-size: 12px;
+  line-height: 1.5;
+
+  transition: background 0.2s ease;
 }
 
-.report-strengths h4 {
-  color: #34D399;
+.report-scores span:hover {
+  background: rgba(145, 195, 239, 0.16);
 }
 
-.report-gaps h4 {
-  color: #F59E0B;
+/* ==========================================
+   STRENGTHS
+========================================== */
+
+.report-strengths h4,
+.report-strengths h4 svg {
+  color: var(--space-green);
 }
+
+/* AREAS TO IMPROVE */
+
+.report-gaps h4,
+.report-gaps h4 svg {
+  color: #e8d39c;
+}
+
+/* ==========================================
+   IDEAL ANSWER
+========================================== */
 
 .report-ideal-answer {
   margin-top: 20px;
-  padding: 17px;
-  background: #0B1220;
-  border-radius: 10px;
-  color: #A78BFA;
+  padding: 18px;
+
+  background: rgba(6, 26, 54, 0.45);
+
+  border: 1px solid rgba(196, 229, 255, 0.13);
+  border-radius: 14px;
+
+  color: var(--space-cyan);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .report-ideal-answer summary {
   cursor: pointer;
-  font-weight: 600;
-  font-size: 14px;
+
+  font-size: 13px;
+  font-weight: 650;
+
+  transition: color 0.2s ease;
+}
+
+.report-ideal-answer summary:hover {
+  color: #ffffff;
 }
 
 .report-ideal-answer p {
-  white-space: pre-wrap;
-  color: #CBD5E1;
-  line-height: 1.8;
-  font-size: 14px;
   margin-top: 15px;
+
+  color: var(--space-muted);
+
+  font-size: 13px;
+  line-height: 1.8;
+
+  white-space: pre-wrap;
+}
+
+/* ==========================================
+   LOADING AND ERROR STATES
+========================================== */
+
+.report-page > div {
+  color: var(--space-text);
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 900px) {
+  .report-container {
+    width: 92%;
+  }
+
+  .report-summary {
+    gap: 14px;
+  }
+
+  .report-summary > div {
+    padding: 21px;
+  }
 }
 
 @media (max-width: 650px) {
+  .report-page {
+    background-attachment: scroll;
+    background-position: 65% center;
+  }
+
   .report-summary {
     grid-template-columns: 1fr;
+    gap: 13px;
+  }
+
+  .report-container {
+    width: 90%;
+    margin: 38px auto;
   }
 
   .report-container > h1 {
-    font-size: 26px;
+    font-size: 32px;
+  }
+
+  .report-section-title {
+    font-size: 25px;
   }
 
   .report-question {
-    padding: 18px;
+    padding: 19px;
+  }
+
+  .report-question h3 {
+    font-size: 21px;
   }
 
   .report-scores {
@@ -226,6 +630,16 @@
   }
 
   .report-header {
+    height: 68px;
     padding: 0 5%;
+  }
+
+  .report-brand {
+    font-size: 16px;
+  }
+
+  .report-brand svg {
+    width: 21px;
+    height: 21px;
   }
 }

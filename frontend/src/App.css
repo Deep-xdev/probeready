@@ -1952,3 +1952,1087 @@ a {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* =====================================================
+   PROBEREADY | BEAM-INSPIRED BLUE GLASS THEME
+   Visual overrides. Existing layout and functionality
+   remain unchanged.
+===================================================== */
+
+/* ---------- BLUE THEME TOKENS ---------- */
+
+:root {
+  --bg: #061b45;
+  --surface: rgba(20, 65, 130, 0.55);
+  --surface-light: rgba(65, 125, 205, 0.28);
+  --border: rgba(164, 211, 255, 0.25);
+
+  --text: #eff8ff;
+  --muted: #b2c9e9;
+
+  --purple: #4d91ed;
+  --purple-light: #a9d8ff;
+  --cyan: #8beaff;
+  --green: #8cebdc;
+
+  --gradient: linear-gradient(
+    110deg,
+    #a9dfff,
+    #69b8ff,
+    #8beaff
+  );
+}
+
+/* ---------- GLOBAL BACKGROUND ---------- */
+
+body {
+  background:
+    radial-gradient(
+      ellipse at 75% 15%,
+      rgba(50, 125, 235, 0.38),
+      transparent 45%
+    ),
+    radial-gradient(
+      ellipse at 15% 75%,
+      rgba(24, 89, 190, 0.35),
+      transparent 50%
+    ),
+    linear-gradient(
+      145deg,
+      #061638,
+      #082c68 55%,
+      #061b45
+    );
+
+  color: var(--text);
+}
+
+/* ---------- NAVIGATION ---------- */
+
+.navbar {
+  border-color: rgba(177, 217, 255, 0.22);
+
+  background: rgba(7, 34, 83, 0.72);
+
+  backdrop-filter: blur(26px);
+  -webkit-backdrop-filter: blur(26px);
+
+  box-shadow:
+    0 12px 45px rgba(0, 12, 40, 0.25),
+    inset 0 1px rgba(255, 255, 255, 0.07);
+}
+
+.brand-accent {
+  color: #a8dfff;
+}
+
+.brand-icon {
+  color: #d8f3ff;
+
+  border-color: rgba(174, 224, 255, 0.35);
+
+  background: linear-gradient(
+    145deg,
+    rgba(99, 169, 255, 0.3),
+    rgba(100, 231, 242, 0.12)
+  );
+
+  box-shadow: 0 0 24px rgba(100, 190, 255, 0.2);
+}
+
+.nav-links a {
+  color: #c0d4ef;
+}
+
+.nav-links a:hover {
+  color: #ffffff;
+}
+
+.nav-button,
+.primary-button {
+  border-color: rgba(195, 229, 255, 0.55);
+
+  background: linear-gradient(
+    110deg,
+    #2769c8,
+    #398bdc 55%,
+    #55b9dc
+  );
+
+  box-shadow:
+    0 8px 30px rgba(27, 104, 205, 0.3),
+    inset 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.nav-button:hover,
+.primary-button:hover {
+  box-shadow:
+    0 12px 35px rgba(44, 147, 235, 0.4);
+}
+
+/* ---------- HERO ATMOSPHERE ---------- */
+
+.hero-background {
+  background:
+    radial-gradient(
+      ellipse at 78% 30%,
+      rgba(75, 145, 245, 0.28),
+      transparent 45%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(9, 49, 112, 0.12),
+      rgba(5, 28, 71, 0.35)
+    );
+}
+
+.hero-background-glow {
+  background: radial-gradient(
+    circle,
+    rgba(74, 148, 255, 0.34),
+    rgba(56, 170, 235, 0.12) 45%,
+    transparent 70%
+  );
+}
+
+.hero-background-grid {
+  opacity: 0.13;
+
+  background-image:
+    linear-gradient(
+      rgba(180, 220, 255, 0.15) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(180, 220, 255, 0.15) 1px,
+      transparent 1px
+    );
+}
+
+.hero-star {
+  background: #a5edff;
+
+  box-shadow:
+    0 0 12px #78dfff,
+    0 0 25px rgba(100, 200, 255, 0.65);
+}
+
+/* ---------- HERO TYPOGRAPHY ---------- */
+
+.announcement {
+  color: #c8e7ff;
+
+  border-color: rgba(158, 209, 255, 0.3);
+
+  background: rgba(59, 127, 213, 0.16);
+}
+
+.announcement-icon {
+  color: #9deaff;
+}
+
+.announcement-line {
+  background: rgba(173, 220, 255, 0.65);
+}
+
+.hero h1 {
+  color: #eff8ff;
+}
+
+.hero h1 > span:not(.hero-gradient-text) {
+  color: #bce4ff;
+}
+
+.hero-gradient-text {
+  background: linear-gradient(
+    105deg,
+    #d4efff 5%,
+    #9bd5ff 45%,
+    #72e6f3 100%
+  );
+
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.hero-description {
+  color: #c0d2eb;
+}
+
+.hero-secondary {
+  color: #d2e6fb;
+}
+
+.hero-secondary:hover {
+  color: #8beaff;
+}
+
+.hero-secondary > span {
+  color: #8beaff;
+}
+
+.hero-proof {
+  color: #b0c9e7;
+}
+
+.hero-proof svg {
+  color: #8cebdc;
+}
+
+.hero-index {
+  color: #a4bfdf;
+}
+
+.hero-index-number {
+  color: #8beaff;
+}
+
+.hero-index-line {
+  background: linear-gradient(
+    90deg,
+    #8beaff,
+    transparent
+  );
+}
+
+/* ---------- SPATIAL SCENE ---------- */
+
+.spatial-scene {
+  perspective: 1400px;
+}
+
+.scene-grid {
+  opacity: 0.27;
+
+  background-image:
+    linear-gradient(
+      rgba(169, 215, 255, 0.13) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(169, 215, 255, 0.13) 1px,
+      transparent 1px
+    );
+}
+
+.scene-ambient-one {
+  background: rgba(60, 130, 255, 0.24);
+}
+
+.scene-ambient-two {
+  background: rgba(68, 205, 239, 0.18);
+}
+
+.scene-coordinate {
+  color: #a8c7ec;
+}
+
+.coordinate-two {
+  color: #8cebdc;
+}
+
+.orbit {
+  border-color: rgba(159, 211, 255, 0.27);
+}
+
+.orbit-vertical {
+  border-color: rgba(105, 221, 255, 0.2);
+}
+
+.orbit-diagonal {
+  border-color: rgba(185, 222, 255, 0.18);
+}
+
+.orbit-node {
+  border-color: rgba(139, 225, 255, 0.7);
+
+  background: #123b79;
+
+  box-shadow:
+    0 0 18px rgba(100, 210, 255, 0.45);
+}
+
+.orbit-node span {
+  background: #a5efff;
+}
+
+/* =====================================================
+   AI ORB
+===================================================== */
+
+.core-halo {
+  width: 310px;
+  height: 310px;
+
+  background: radial-gradient(
+    circle,
+    rgba(124, 201, 255, 0.35),
+    rgba(71, 146, 245, 0.16) 48%,
+    transparent 72%
+  );
+
+  filter: blur(22px);
+}
+
+
+/* ==========================================
+   PROBEREADY | HOLOGRAPHIC NEURAL CORE
+========================================== */
+
+.core-shell.ai-orb {
+  position: relative;
+  width: 245px;
+  height: 245px;
+  display: grid;
+  place-items: center;
+  overflow: visible;
+  border: 1px solid rgba(173, 225, 255, 0.65);
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      rgba(222, 247, 255, 0.85),
+      rgba(112, 190, 255, 0.38) 12%,
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(61, 157, 255, 0.35),
+      rgba(16, 66, 145, 0.8) 65%,
+      rgba(7, 34, 83, 0.95)
+    );
+
+  box-shadow:
+    inset 0 0 35px rgba(190, 231, 255, 0.3),
+    inset 0 -25px 45px rgba(0, 28, 90, 0.55),
+    0 0 35px rgba(91, 183, 255, 0.35),
+    0 0 90px rgba(53, 139, 255, 0.25);
+
+  animation: neural-float 7s ease-in-out infinite;
+}
+
+/* Inner glass structure */
+.core-shell.ai-orb::before {
+  content: "";
+  position: absolute;
+  inset: 17px;
+
+  border: 1px solid rgba(196, 235, 255, 0.65);
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(170, 231, 255, 0.12),
+      transparent 65%
+    );
+
+  box-shadow:
+    inset 0 0 25px rgba(142, 214, 255, 0.2),
+    0 0 25px rgba(113, 204, 255, 0.18);
+
+  animation: neural-rotate 18s linear infinite;
+}
+
+/* Orbital energy ring */
+.core-shell.ai-orb::after {
+  content: "";
+  position: absolute;
+
+  width: 320px;
+  height: 115px;
+
+  border: 1px solid rgba(129, 220, 255, 0.7);
+  border-radius: 50%;
+
+  transform: rotate(-32deg);
+
+  box-shadow:
+    0 0 12px rgba(98, 204, 255, 0.25),
+    inset 0 0 12px rgba(98, 204, 255, 0.15);
+
+  animation: neural-rotate 12s linear infinite;
+}
+
+/* Hide the previous robot face */
+.ai-orb-face,
+.ai-orb-reflection,
+.ai-orb-highlight {
+  display: none !important;
+}
+
+/* Central energy nucleus */
+.ai-orb-nucleus {
+  position: absolute;
+  z-index: 3;
+
+  width: 48px;
+  height: 48px;
+
+  border: 1px solid rgba(220, 249, 255, 0.9);
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    #ffffff 0%,
+    #a9edff 20%,
+    #4eaeff 55%,
+    rgba(35, 119, 225, 0.2) 100%
+  );
+
+  box-shadow:
+    0 0 15px #a5eaff,
+    0 0 35px rgba(91, 202, 255, 0.9),
+    0 0 75px rgba(76, 147, 255, 0.65);
+
+  animation: nucleus-pulse 3s ease-in-out infinite;
+}
+
+/* Additional orbit ring */
+.core-halo {
+  width: 320px;
+  height: 320px;
+
+  background: radial-gradient(
+    circle,
+    rgba(95, 184, 255, 0.2),
+    rgba(55, 132, 255, 0.1) 45%,
+    transparent 72%
+  );
+
+  filter: blur(20px);
+}
+
+@keyframes neural-float {
+  0%, 100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+
+  50% {
+    transform: translateY(-12px) rotate(3deg);
+  }
+}
+
+@keyframes neural-rotate {
+  from {
+    rotate: 0deg;
+  }
+
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes nucleus-pulse {
+  0%, 100% {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+
+  50% {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .core-shell.ai-orb {
+    width: 165px;
+    height: 165px;
+  }
+
+  .core-shell.ai-orb::after {
+    width: 215px;
+    height: 80px;
+  }
+
+  .core-halo {
+    width: 220px;
+    height: 220px;
+  }
+
+  .ai-orb-nucleus {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .core-shell.ai-orb,
+  .core-shell.ai-orb::before,
+  .core-shell.ai-orb::after,
+  .ai-orb-nucleus {
+    animation: none;
+  }
+}
+
+/* ---------- CORE CAPTION ---------- */
+
+.core-caption {
+  color: #c1e6ff;
+}
+
+.core-caption-dot {
+  background: #a0edff;
+
+  box-shadow: 0 0 12px #80e6ff;
+}
+
+/* ---------- FLOATING GLASS CARDS ---------- */
+
+.spatial-panel {
+  border: 1px solid rgba(169, 218, 255, 0.35);
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(89, 151, 224, 0.32),
+      rgba(15, 53, 113, 0.7)
+    );
+
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+
+  box-shadow:
+    0 18px 50px rgba(0, 18, 55, 0.35),
+    inset 0 1px rgba(255, 255, 255, 0.18),
+    inset 0 -1px rgba(126, 196, 255, 0.15);
+}
+
+.panel-topline {
+  color: #c1d9f4;
+}
+
+.purple-icon {
+  color: #d0e9ff;
+  background: rgba(106, 171, 255, 0.22);
+}
+
+.cyan-icon {
+  color: #9ceeff;
+  background: rgba(100, 220, 255, 0.2);
+}
+
+.green-icon {
+  color: #a5f1df;
+  background: rgba(117, 223, 196, 0.2);
+}
+
+.panel-status {
+  color: #8cebdc;
+}
+
+.panel-main-value {
+  color: #ffffff;
+}
+
+.panel-main-value small {
+  color: #c0d8f2;
+}
+
+.panel-mini-tags span {
+  color: #d3ebff;
+
+  border-color: rgba(176, 219, 255, 0.27);
+
+  background: rgba(81, 148, 222, 0.22);
+}
+
+.panel-bottom-line {
+  color: #aac5e5;
+}
+
+.mini-bar {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.mini-bar i {
+  background: linear-gradient(
+    90deg,
+    #8fc9ff,
+    #7de9f4
+  );
+}
+
+.panel-question {
+  color: #f1f8ff;
+}
+
+.panel-interview-bottom {
+  color: #bdd4ef;
+}
+
+.difficulty-tag {
+  color: #d4eaff;
+
+  border-color: rgba(185, 220, 255, 0.35);
+
+  background: rgba(100, 160, 220, 0.2);
+}
+
+.score-display strong {
+  color: #9cf0f1;
+}
+
+.score-display span {
+  color: #bfd6ef;
+}
+
+.score-meter {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.score-meter i {
+  background: linear-gradient(
+    90deg,
+    #8bc6ff,
+    #7be9f4
+  );
+}
+
+.score-feedback {
+  color: #c3e6df;
+}
+
+.score-feedback svg {
+  color: #8cebdc;
+}
+
+.signal-icon {
+  color: #a5efff;
+
+  border-color: rgba(145, 220, 255, 0.35);
+
+  background: rgba(94, 178, 236, 0.2);
+}
+
+.panel-signal > div:nth-child(2) span {
+  color: #b1cbe9;
+}
+
+.panel-signal > div:nth-child(2) strong {
+  color: #f0f8ff;
+}
+
+.signal-activity {
+  color: #9deaff;
+}
+
+.scene-bottom-label {
+  color: #aac5e5;
+}
+
+.scene-bottom-label > span:first-child {
+  color: #9deaff;
+}
+
+.scene-bottom-line {
+  background: linear-gradient(
+    90deg,
+    #9deaff,
+    transparent
+  );
+}
+
+/* ---------- CONTENT SECTIONS ---------- */
+
+.section-kicker {
+  color: #a9d8ff;
+}
+
+.kicker-line {
+  background: linear-gradient(
+    90deg,
+    rgba(169, 216, 255, 0.8),
+    transparent
+  );
+}
+
+.section-kicker > span:last-child {
+  color: #9ab7da;
+}
+
+.section-heading h2 {
+  color: #f0f8ff;
+}
+
+.section-heading h2 span {
+  background: linear-gradient(
+    100deg,
+    #c1e7ff,
+    #76dff3
+  );
+
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.section-heading > p {
+  color: #b3c9e7;
+}
+
+/* ---------- PROCESS TIMELINE ---------- */
+
+.process-list {
+  border-color: rgba(177, 216, 255, 0.2);
+}
+
+.process-item {
+  border-color: rgba(177, 216, 255, 0.2);
+}
+
+.process-item:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(98, 164, 241, 0.13),
+    transparent
+  );
+}
+
+.process-number {
+  color: #a9d8ff;
+}
+
+.process-marker {
+  border-color: rgba(164, 216, 255, 0.5);
+
+  background: #0d326d;
+}
+
+.process-marker span {
+  background: #8beaff;
+
+  box-shadow: 0 0 12px rgba(100, 231, 242, 0.8);
+}
+
+.process-copy h3 {
+  color: #edf7ff;
+}
+
+.process-copy p {
+  color: #b2c9e9;
+}
+
+.process-index {
+  color: #a2bbdc;
+}
+
+/* ---------- FEATURE CARDS ---------- */
+
+.feature-card {
+  border-color: rgba(169, 218, 255, 0.25);
+
+  background: linear-gradient(
+    145deg,
+    rgba(44, 103, 177, 0.4),
+    rgba(9, 39, 88, 0.65)
+  );
+
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.feature-card::after {
+  background: rgba(106, 197, 255, 0.16);
+}
+
+.feature-card:hover {
+  border-color: rgba(175, 227, 255, 0.55);
+
+  box-shadow:
+    0 20px 50px rgba(0, 15, 50, 0.3);
+}
+
+.feature-icon {
+  color: #c4e9ff;
+
+  border-color: rgba(170, 218, 255, 0.3);
+
+  background: linear-gradient(
+    145deg,
+    rgba(101, 170, 240, 0.28),
+    rgba(100, 231, 242, 0.12)
+  );
+}
+
+.feature-number {
+  color: #9bb9dc;
+}
+
+.feature-card h3 {
+  color: #f0f8ff;
+}
+
+.feature-card p {
+  color: #b4cbe7;
+}
+
+.feature-card-bottom {
+  color: #a8c3e4;
+}
+
+.feature-card:hover .feature-card-bottom {
+  color: #8beaff;
+}
+
+/* ---------- CTA ---------- */
+
+.cta-section {
+  border-color: rgba(164, 216, 255, 0.3);
+
+  background:
+    radial-gradient(
+      ellipse at 15% 100%,
+      rgba(58, 133, 226, 0.35),
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 90% 0%,
+      rgba(65, 183, 220, 0.22),
+      transparent 45%
+    ),
+    linear-gradient(
+      135deg,
+      #123d7e,
+      #0a2a60 60%,
+      #09264c
+    );
+
+  box-shadow:
+    0 30px 90px rgba(0, 12, 42, 0.3),
+    inset 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.cta-orbit {
+  border-color: rgba(173, 220, 255, 0.2);
+}
+
+.cta-orbit-two {
+  border-color: rgba(100, 231, 242, 0.2);
+}
+
+.cta-kicker {
+  color: #b8e1ff;
+}
+
+.cta-content h2 {
+  color: #f2f9ff;
+}
+
+.cta-content h2 span {
+  background: linear-gradient(
+    100deg,
+    #c1e7ff,
+    #76dff3
+  );
+
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.cta-content > p {
+  color: #bdd2ec;
+}
+
+.cta-side-note {
+  color: #a9c6e6;
+}
+
+.cta-side-note svg {
+  color: #8beaff;
+}
+
+/* ---------- FOOTER ---------- */
+
+.footer {
+  border-color: rgba(174, 216, 255, 0.2);
+}
+
+.footer > p {
+  color: #b1c8e5;
+}
+
+.copyright {
+  color: #9bb6d7;
+}
+
+/* ---------- MOBILE NAVIGATION ---------- */
+
+@media (max-width: 600px) {
+  .nav-links {
+    border-color: rgba(169, 218, 255, 0.3);
+
+    background: rgba(7, 35, 82, 0.97);
+  }
+
+  .nav-links .mobile-nav-link {
+    color: #c5e5ff;
+  }
+
+  .mobile-menu {
+    color: #e8f6ff;
+
+    border-color: rgba(169, 218, 255, 0.25);
+
+    background: rgba(100, 160, 225, 0.15);
+  }
+
+  .spatial-scene {
+    overflow: hidden;
+  }
+
+  .core-shell.ai-orb {
+    width: 175px;
+    height: 175px;
+  }
+
+  .ai-orb-eyes {
+    gap: 23px;
+  }
+
+  .ai-orb-eye {
+    width: 39px;
+    height: 45px;
+  }
+
+  .ai-orb-eye i {
+    height: 12px;
+  }
+
+  .ai-orb-mouth {
+    width: 68px;
+    height: 15px;
+    margin-top: 15px;
+    border-bottom-width: 3px;
+  }
+
+  .core-halo {
+    width: 220px;
+    height: 220px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .core-shell.ai-orb {
+    animation: none;
+  }
+}
+
+
+
+/* ==========================================
+   PROBEREADY | FLOATING AI LOGO
+========================================== */
+
+.
+/* PROBEREADY | INTEGRATED HOLOGRAPHIC EMBLEM */
+
+.core-logo-visual {
+  position: relative;
+  z-index: 3;
+  width: 235px;
+  height: 235px;
+  display: grid;
+  place-items: center;
+  animation: logo-float 7s ease-in-out infinite;
+}
+
+.core-logo-glow {
+  position: absolute;
+  inset: 15%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(91, 198, 255, 0.22),
+    rgba(44, 133, 235, 0.10) 48%,
+    transparent 75%
+  );
+  filter: blur(32px);
+  animation: logo-glow 6s ease-in-out infinite;
+}
+
+.core-logo-image {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+
+  /* Integrate the emblem with the blue atmosphere */
+  mix-blend-mode: screen;
+  opacity: 0.82;
+
+  filter:
+    brightness(0.88)
+    saturate(0.82)
+    contrast(0.92)
+    drop-shadow(0 0 12px rgba(104, 205, 255, 0.20));
+}
+
+@keyframes logo-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes logo-glow {
+  0%, 100% {
+    opacity: 0.45;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.08);
+  }
+}
+
+@media (max-width: 600px) {
+  .core-logo-visual {
+    width: 175px;
+    height: 175px;
+  }
+}
+
+
+@keyframes logo-float {
+  0%, 100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(3deg);
+  }
+}
+
+@keyframes logo-glow {
+  0%, 100% {
+    opacity: 0.55;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .core-logo-visual {
+    width: 175px;
+    height: 175px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .core-logo-visual,
+  .core-logo-glow {
+    animation: none;
+  }
+}

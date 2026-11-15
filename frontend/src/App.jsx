@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   ArrowRight,
   BrainCircuit,
@@ -16,10 +16,7 @@ import {
   Sparkles,
   Orbit,
   Activity,
-  Code2,
-  Layers3,
   AudioWaveform,
-  ScanSearch,
   ChevronRight
 } from "lucide-react";
 
@@ -27,7 +24,8 @@ import {
   BrowserRouter,
   Routes,
   Route,
-  Link
+  Link,
+  useLocation
 } from "react-router-dom";
 
 import { InterviewProvider } from "./context/InterviewContext";
@@ -39,6 +37,21 @@ import InterviewReport from "./pages/InterviewReport";
 import Analytics from "./pages/Analytics";
 
 import "./App.css";
+
+// Reset scroll position whenever the route changes.
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant"
+    });
+  }, [pathname]);
+
+  return null;
+}
 
 const features = [
   {
@@ -70,11 +83,11 @@ const features = [
       "Get meaningful feedback on technical correctness, coverage and clarity."
   },
   {
-    icon: Mic,
+    icon: Activity,
     number: "05",
-    title: "Communication Analytics",
+    title: "Answer Analytics",
     description:
-      "Understand your communication through planned voice-based feedback."
+      "Track your technical accuracy, answer clarity, depth, and overall interview performance."
   },
   {
     icon: ChartNoAxesCombined,
@@ -119,16 +132,24 @@ function Navbar() {
         <span className="brand-icon">
           <BrainCircuit size={21} />
         </span>
-        <span>Probe<span className="brand-accent">Ready</span></span>
+        <span>
+          Probe<span className="brand-accent">Ready</span>
+        </span>
       </Link>
 
       <div
         id="landing-navigation"
         className={`nav-links ${menuOpen ? "nav-links-open" : ""}`}
       >
-        <a href="#how-it-works" onClick={closeMenu}>How it works</a>
-        <a href="#features" onClick={closeMenu}>Features</a>
-        <a href="#about" onClick={closeMenu}>About</a>
+        <a href="#how-it-works" onClick={closeMenu}>
+          How it works
+        </a>
+        <a href="#features" onClick={closeMenu}>
+          Features
+        </a>
+        <a href="#about" onClick={closeMenu}>
+          About
+        </a>
 
         <Link
           to="/dashboard"
@@ -159,103 +180,125 @@ function Navbar() {
 
 function SpatialCore() {
   return (
-    <div className="spatial-scene" aria-label="ProbeReady AI interview intelligence visualization">
+    <div
+      className="spatial-scene"
+      aria-label="ProbeReady AI intelligence visualization"
+    >
       <div className="scene-ambient scene-ambient-one" />
       <div className="scene-ambient scene-ambient-two" />
       <div className="scene-grid" />
 
-      <div className="scene-coordinate coordinate-one">INTELLIGENCE / 001</div>
-      <div className="scene-coordinate coordinate-two">SYSTEM ONLINE</div>
+      <div className="scene-coordinate coordinate-one">
+        INTELLIGENCE / 001
+      </div>
+      <div className="scene-coordinate coordinate-two">
+        SYSTEM ONLINE
+      </div>
 
       <div className="orbit orbit-horizontal" />
       <div className="orbit orbit-vertical" />
       <div className="orbit orbit-diagonal" />
 
-      <div className="orbit-node orbit-node-one">
-        <span />
-      </div>
-      <div className="orbit-node orbit-node-two">
-        <span />
-      </div>
-      <div className="orbit-node orbit-node-three">
-        <span />
-      </div>
+      <div className="orbit-node orbit-node-one"><span /></div>
+      <div className="orbit-node orbit-node-two"><span /></div>
+      <div className="orbit-node orbit-node-three"><span /></div>
+{/* ProbeReady AI Logo */}
+<div className="core-logo-visual">
+  <div className="core-logo-glow" />
 
-      <div className="core-halo" />
-      <div className="core-shell">
-        <div className="core-inner">
-          <div className="core-rings">
-            <div className="core-ring core-ring-one" />
-            <div className="core-ring core-ring-two" />
-            <div className="core-ring core-ring-three" />
-          </div>
-          <div className="core-symbol">
-            <BrainCircuit size={48} strokeWidth={1.15} />
-          </div>
-          <div className="core-center-dot" />
-        </div>
-      </div>
+  <img
+    src="/images/probeready-symbol.png"
+    alt="ProbeReady AI"
+    className="core-logo-image"
+  />
+</div>
 
       <div className="core-caption">
         <span className="core-caption-dot" />
         <span>PROBEREADY INTELLIGENCE</span>
       </div>
 
+      {/* Floating card 1: Resume */}
       <div className="spatial-panel panel-resume">
         <div className="panel-topline">
-          <span className="panel-icon purple-icon"><FileSearch size={15} /></span>
+          <span className="panel-icon purple-icon">
+            <FileSearch size={15} />
+          </span>
           <span>RESUME SCAN</span>
           <span className="panel-status">COMPLETE</span>
         </div>
-        <div className="panel-main-value">12 <small>claims identified</small></div>
+
+        <div className="panel-main-value">
+          12 <small>claims identified</small>
+        </div>
+
         <div className="panel-mini-tags">
           <span>React</span>
           <span>Python</span>
           <span>RAG</span>
         </div>
+
         <div className="panel-bottom-line">
           <span className="mini-bar"><i /></span>
           <span>PROFILE ANALYZED</span>
         </div>
       </div>
 
+      {/* Floating card 2: Interview */}
       <div className="spatial-panel panel-interview">
         <div className="panel-topline">
-          <span className="panel-icon cyan-icon"><MessageSquareText size={15} /></span>
+          <span className="panel-icon cyan-icon">
+            <MessageSquareText size={15} />
+          </span>
           <span>LIVE INTERVIEW</span>
           <span className="recording-dot" />
         </div>
+
         <p className="panel-question">
           Why did you choose FAISS for vector similarity search?
         </p>
+
         <div className="panel-interview-bottom">
           <span>QUESTION 04</span>
           <span className="difficulty-tag">INTERMEDIATE</span>
         </div>
       </div>
 
+      {/* Floating card 3: Evaluation */}
       <div className="spatial-panel panel-score">
         <div className="panel-topline">
-          <span className="panel-icon green-icon"><Target size={15} /></span>
+          <span className="panel-icon green-icon">
+            <Target size={15} />
+          </span>
           <span>ANSWER EVALUATION</span>
         </div>
+
         <div className="score-display">
           <strong>7.5</strong>
           <span>/ 10</span>
         </div>
-        <div className="score-meter"><i /></div>
+
+        <div className="score-meter">
+          <i />
+        </div>
+
         <p className="score-feedback">
           <CheckCircle2 size={13} />
           Strong technical foundation
         </p>
       </div>
 
+      {/* Floating card 4: Adaptive engine */}
       <div className="spatial-panel panel-signal">
-        <div className="signal-icon"><AudioWaveform size={19} /></div>
+        <div className="signal-icon">
+          <AudioWaveform size={19} />
+        </div>
+
         <div>
           <span>ADAPTIVE ENGINE</span>
           <strong>Reasoning detected</strong>
         </div>
+
         <Activity size={16} className="signal-activity" />
       </div>
 
@@ -281,7 +324,9 @@ function Hero() {
 
       <div className="hero-copy">
         <div className="announcement">
-          <span className="announcement-icon"><Sparkles size={13} /></span>
+          <span className="announcement-icon">
+            <Sparkles size={13} />
+          </span>
           <span>AN INTERVIEW INTELLIGENCE SYSTEM</span>
           <span className="announcement-line" />
         </div>
@@ -306,14 +351,18 @@ function Hero() {
           <Link to="/dashboard" className="primary-button hero-primary">
             Enter the workspace <ArrowRight size={17} />
           </Link>
+
           <a href="#how-it-works" className="hero-secondary">
-            Explore the system <span><ChevronRight size={16} /></span>
+            Explore the system
+            <span><ChevronRight size={16} /></span>
           </a>
         </div>
 
         <div className="hero-proof">
           <ShieldCheck size={16} />
-          <span>Built around your skills, projects and real understanding.</span>
+          <span>
+            Built around your skills, projects and real understanding.
+          </span>
         </div>
 
         <div className="hero-index">
@@ -345,6 +394,7 @@ function HowItWorks() {
             <span>One honest assessment.</span>
           </h2>
         </div>
+
         <p>
           No generic question dumps. Your preparation begins with your
           experience and gets more specific with every answer.
@@ -355,14 +405,16 @@ function HowItWorks() {
         {steps.map((step, index) => (
           <article className="process-item" key={step.number}>
             <div className="process-number">{step.number}</div>
-            <div className="process-marker">
-              <span />
-            </div>
+            <div className="process-marker"><span /></div>
+
             <div className="process-copy">
               <h3>{step.title}</h3>
               <p>{step.description}</p>
             </div>
-            <span className="process-index">PHASE {index + 1}</span>
+
+            <span className="process-index">
+              PHASE {index + 1}
+            </span>
           </article>
         ))}
       </div>
@@ -385,6 +437,7 @@ function Features() {
           <br />
           <span>A system that understands context.</span>
         </h2>
+
         <p>
           Every capability works toward one goal: finding the difference
           between what you claim and what you can demonstrate.
@@ -395,11 +448,15 @@ function Features() {
         {features.map(({ icon: Icon, number, title, description }) => (
           <article className="feature-card" key={title}>
             <div className="feature-card-top">
-              <span className="feature-icon"><Icon size={21} /></span>
+              <span className="feature-icon">
+                <Icon size={21} />
+              </span>
               <span className="feature-number">{number}</span>
             </div>
+
             <h3>{title}</h3>
             <p>{description}</p>
+
             <div className="feature-card-bottom">
               <span>EXPLORE CAPABILITY</span>
               <ArrowRight size={15} />
@@ -416,8 +473,12 @@ function CTA() {
     <section className="cta-section" id="start">
       <div className="cta-orbit cta-orbit-one" />
       <div className="cta-orbit cta-orbit-two" />
+
       <div className="cta-content">
-        <span className="cta-kicker"><Zap size={13} /> YOUR NEXT STEP</span>
+        <span className="cta-kicker">
+          <Zap size={13} /> YOUR NEXT STEP
+        </span>
+
         <h2>
           Don't prepare to
           <br />
@@ -425,14 +486,17 @@ function CTA() {
           <br />
           Prepare to be convincing.
         </h2>
+
         <p>
           Put your knowledge under pressure. Find your gaps.
           Build confidence that has evidence behind it.
         </p>
+
         <Link to="/dashboard" className="primary-button cta-button">
           Start your assessment <ArrowRight size={17} />
         </Link>
       </div>
+
       <div className="cta-side-note">
         <Orbit size={17} />
         <span>THE PROBEREADY SYSTEM</span>
@@ -445,11 +509,19 @@ function Footer() {
   return (
     <footer className="footer">
       <Link to="/" className="brand">
-        <span className="brand-icon"><BrainCircuit size={19} /></span>
-        <span>Probe<span className="brand-accent">Ready</span></span>
+        <span className="brand-icon">
+          <BrainCircuit size={19} />
+        </span>
+        <span>
+          Probe<span className="brand-accent">Ready</span>
+        </span>
       </Link>
+
       <p>Built to test what you actually know.</p>
-      <span className="copyright">© 2026 ProbeReady. All rights reserved.</span>
+
+      <span className="copyright">
+        © 2026 ProbeReady. All rights reserved.
+      </span>
     </footer>
   );
 }
@@ -458,12 +530,14 @@ function LandingPage() {
   return (
     <>
       <Navbar />
+
       <main>
         <Hero />
         <HowItWorks />
         <Features />
         <CTA />
       </main>
+
       <Footer />
     </>
   );
@@ -473,6 +547,8 @@ function App() {
   return (
     <InterviewProvider>
       <BrowserRouter>
+        <ScrollToTop />
+
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/dashboard" element={<Dashboard />} />

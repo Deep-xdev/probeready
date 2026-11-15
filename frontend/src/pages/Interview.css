@@ -761,3 +761,42 @@
     animation-iteration-count: 1 !important;
   }
 }
+
+
+
+.interview-voice-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.interview-voice-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 1px solid var(--border-color, #333);
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.interview-voice-button:hover:not(:disabled) {
+  background: rgba(128, 128, 128, 0.12);
+}
+
+.interview-voice-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.interview-voice-status {
+  font-size: 13px;
+  opacity: 0.8;
+}

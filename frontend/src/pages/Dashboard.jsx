@@ -113,8 +113,11 @@ function Dashboard() {
             </div>
 
             <h1>
-              Welcome back, <span>Candidate.</span>
-            </h1>
+  Welcome back,{" "}
+  <span>
+    {savedResume?.analysis?.candidate_name || "Candidate"}.
+  </span>
+</h1>
 
             <p>
               Every interview is an opportunity to prove what you know.

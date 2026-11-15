@@ -1,5 +1,7 @@
 
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import {
   BrainCircuit,
   Upload,
@@ -19,8 +21,38 @@ import "./Resume.css";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
 
+// Safely convert strings and objects into displayable text.
+function getDisplayText(value) {
+  if (value === null || value === undefined) {
+    return "";
+  }
+
+  if (typeof value === "string" || typeof value === "number") {
+    return String(value);
+  }
+
+  if (Array.isArray(value)) {
+    return value.map(getDisplayText).filter(Boolean).join(", ");
+  }
+
+  if (typeof value === "object") {
+    return (
+      value.text ||
+      value.excerpt ||
+      value.description ||
+      value.name ||
+      value.claim ||
+      value.evidence ||
+      ""
+    );
+  }
+
+  return "";
+}
+
 function Resume() {
   const { startInterview } = useInterview();
+  const navigate = useNavigate();
   const fileInputRef = useRef(null);
 
   const [selectedFile, setSelectedFile] = useState(null);
@@ -44,7 +76,9 @@ function Resume() {
         const data = await response.json();
 
         if (!response.ok) {
-          throw new Error(data.detail || "Failed to load saved resume.");
+          throw new Error(
+            data.detail || "Failed to load saved resume."
+          );
         }
 
         if (data.resume) {
@@ -73,7 +107,9 @@ function Resume() {
     const extension = file.name.split(".").pop().toLowerCase();
 
     if (!["pdf", "docx"].includes(extension)) {
-      setError("Unsupported file format. Please upload a PDF or DOCX file.");
+      setError(
+        "Unsupported file format. Please upload a PDF or DOCX file."
+      );
       return;
     }
 
@@ -135,12 +171,16 @@ function Resume() {
       const uploadData = await uploadResponse.json();
 
       if (!uploadResponse.ok) {
-        throw new Error(uploadData.detail || "Resume upload failed.");
+        throw new Error(
+          uploadData.detail || "Resume upload failed."
+        );
       }
 
-      // STEP 2: Send extracted text to the AI analysis endpoint.
+      // STEP 2: Send extracted text to AI analysis.
       const analysisResponse = await fetch(
-        `/api/resume/analyze?filename=${encodeURIComponent(selectedFile.name)}`,
+        `/api/resume/analyze?filename=${encodeURIComponent(
+          selectedFile.name
+        )}`,
         {
           method: "POST",
           headers: {
@@ -163,12 +203,15 @@ function Resume() {
       // STEP 3: Store extraction and AI analysis results.
       setAnalysisResult({
         ...uploadData,
+        filename: selectedFile.name,
         analysis: analysisData.analysis
       });
 
-      setMessage("Resume uploaded and AI analysis completed successfully!");
-      setSelectedFile(null);
+      setMessage(
+        "Resume uploaded and AI analysis completed successfully!"
+      );
 
+      setSelectedFile(null);
     } catch (err) {
       console.error("Resume analysis error:", err);
 
@@ -210,7 +253,11 @@ function Resume() {
         );
       }
 
-      // STEP 2: Save the interview session in SQLite.
+      if (!Array.isArray(data.questions) || data.questions.length === 0) {
+        throw new Error("The AI did not generate any questions.");
+      }
+
+      // STEP 2: Save the interview session.
       const saveResponse = await fetch("/api/interviews", {
         method: "POST",
         headers: {
@@ -230,7 +277,11 @@ function Resume() {
         );
       }
 
-      // STEP 3: Update frontend and interview context.
+      if (!savedData.session_id) {
+        throw new Error("Interview was saved without a session ID.");
+      }
+
+      // STEP 3: Update interview context.
       setQuestions(data.questions);
 
       startInterview(
@@ -239,6 +290,8 @@ function Resume() {
         savedData.session_id
       );
 
+      // STEP 4: Open the Mock Interview page.
+      navigate("/interview");
     } catch (error) {
       console.error("Question generation error:", error);
 
@@ -400,6 +453,10 @@ function Resume() {
           </p>
         </div>
 
+        {isLoadingSavedResume && (
+          <p>Loading your saved resume...</p>
+        )}
+
         {/* AI ANALYSIS RESULTS */}
         {analysis && (
           <div className="ai-analysis-results">
@@ -414,75 +471,136 @@ function Resume() {
               </div>
             </div>
 
-            {/* Summary */}
+            {/* SUMMARY */}
             <div className="analysis-card">
               <h4>Profile Summary</h4>
-              <p>{analysis.summary}</p>
+              <p>{getDisplayText(analysis.summary)}</p>
             </div>
 
-            {/* Skills */}
+            {/* SKILLS */}
             <div className="analysis-card">
               <h4>Identified Skills</h4>
 
               <div className="analysis-skills">
                 {analysis.skills?.map((skill, index) => (
                   <div className="analysis-skill" key={index}>
-                    <strong>{skill.name}</strong>
-                    <span>{skill.category}</span>
+                    <strong>
+                      {getDisplayText(skill.category) || "Other"}
+                    </strong>
+
+                    <div className="analysis-skill-items">
+                      {Array.isArray(skill.items) &&
+                        skill.items.map((item, itemIndex) => (
+                          <span key={itemIndex}>
+                            {getDisplayText(item)}
+                          </span>
+                        ))}
+
+                      {skill.name && (
+                        <span>{getDisplayText(skill.name)}</span>
+                      )}
+                    </div>
+
+                    {skill.evidence && (
+                      <p>{getDisplayText(skill.evidence)}</p>
+                    )}
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Projects */}
+            {/* PROJECTS */}
             <div className="analysis-card">
               <h4>Projects</h4>
 
-              {analysis.projects?.map((project, index) => (
-                <div className="analysis-project" key={index}>
-                  <h5>{project.name}</h5>
-                  <p>{project.description}</p>
+              {analysis.projects?.length > 0 ? (
+                analysis.projects.map((project, index) => (
+                  <div className="analysis-project" key={index}>
+                    <h5>
+                      {getDisplayText(project.name) || "Untitled Project"}
+                    </h5>
 
-                  <div className="analysis-skills">
-                    {project.technologies?.map((tech, techIndex) => (
-                      <span className="analysis-tag" key={techIndex}>
-                        {tech}
-                      </span>
-                    ))}
+                    <p>
+                      {getDisplayText(project.description) ||
+                        getDisplayText(project.text)}
+                    </p>
+
+                    <div className="analysis-skills">
+                      {Array.isArray(project.technologies) &&
+                        project.technologies.map((tech, techIndex) => (
+                          <span
+                            className="analysis-tag"
+                            key={techIndex}
+                          >
+                            {getDisplayText(tech)}
+                          </span>
+                        ))}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))
+              ) : (
+                <p>No projects identified.</p>
+              )}
             </div>
 
-            {/* Technical Claims */}
+            {/* TECHNICAL CLAIMS */}
             <div className="analysis-card">
               <h4>Technical Claims</h4>
 
-              {analysis.claims?.map((claim, index) => (
-                <div className="analysis-claim" key={index}>
-                  <strong>{claim.claim}</strong>
-                  <p>Evidence: {claim.evidence}</p>
-                  <span>Project: {claim.project}</span>
-                </div>
-              ))}
+              {analysis.claims?.length > 0 ? (
+                analysis.claims.map((claim, index) => (
+                  <div className="analysis-claim" key={index}>
+                    <strong>
+                      {getDisplayText(claim.claim) ||
+                        getDisplayText(claim.text) ||
+                        "Technical claim"}
+                    </strong>
+
+                    {(claim.evidence || claim.excerpt) && (
+                      <p>
+                        Evidence:{" "}
+                        {getDisplayText(
+                          claim.evidence || claim.excerpt
+                        )}
+                      </p>
+                    )}
+
+                    {claim.project && (
+                      <span>
+                        Project: {getDisplayText(claim.project)}
+                      </span>
+                    )}
+                  </div>
+                ))
+              ) : (
+                <p>No technical claims identified.</p>
+              )}
             </div>
 
-            {/* Education */}
+            {/* EDUCATION */}
             <div className="analysis-card">
               <h4>Education</h4>
 
-              {analysis.education?.map((item, index) => (
-                <p key={index}>{item}</p>
-              ))}
+              {analysis.education?.length > 0 ? (
+                analysis.education.map((item, index) => (
+                  <p key={index}>{getDisplayText(item)}</p>
+                ))
+              ) : (
+                <p>No education details identified.</p>
+              )}
             </div>
 
-            {/* Experience */}
+            {/* EXPERIENCE */}
             <div className="analysis-card">
               <h4>Experience</h4>
 
-              {analysis.experience?.map((item, index) => (
-                <p key={index}>{item}</p>
-              ))}
+              {analysis.experience?.length > 0 ? (
+                analysis.experience.map((item, index) => (
+                  <p key={index}>{getDisplayText(item)}</p>
+                ))
+              ) : (
+                <p>No experience details identified.</p>
+              )}
             </div>
           </div>
         )}
@@ -511,7 +629,9 @@ function Resume() {
                 <select
                   id="difficulty"
                   value={difficulty}
-                  onChange={(event) => setDifficulty(event.target.value)}
+                  onChange={(event) =>
+                    setDifficulty(event.target.value)
+                  }
                 >
                   <option value="Easy">Easy</option>
                   <option value="Medium">Medium</option>
@@ -571,20 +691,20 @@ function Resume() {
                   >
                     <div className="generated-question-meta">
                       <span>QUESTION {index + 1}</span>
-                      <span>{item.category}</span>
-                      <span>{item.difficulty}</span>
+                      <span>{getDisplayText(item.category)}</span>
+                      <span>{getDisplayText(item.difficulty)}</span>
                     </div>
 
-                    <h4>{item.question}</h4>
+                    <h4>{getDisplayText(item.question)}</h4>
 
                     <p>
                       <strong>Why this question?</strong>{" "}
-                      {item.reason}
+                      {getDisplayText(item.reason)}
                     </p>
 
                     <div className="question-follow-up">
                       <strong>Follow-up:</strong>
-                      <p>{item.follow_up}</p>
+                      <p>{getDisplayText(item.follow_up)}</p>
                     </div>
                   </div>
                 ))}

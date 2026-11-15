@@ -1,34 +1,34 @@
 
 /* ==========================================
-   PROBEREADY | SPATIAL AI WORKSPACE
+   PROBEREADY | SPATIAL GLASS WORKSPACE
    Shared Workspace Layout
 ========================================== */
 
 /* DESIGN TOKENS */
 
 :root {
-  --space-bg: #080a16;
-  --space-surface: rgba(19, 22, 43, 0.72);
-  --space-surface-light: rgba(29, 33, 62, 0.72);
-  --space-glass: rgba(255, 255, 255, 0.045);
+  --space-bg: #082653;
+  --space-surface: rgba(25, 75, 139, 0.24);
+  --space-surface-light: rgba(102, 163, 224, 0.10);
+  --space-glass: rgba(202, 230, 255, 0.07);
 
-  --space-border: rgba(165, 170, 255, 0.13);
-  --space-border-hover: rgba(157, 135, 255, 0.35);
+  --space-border: rgba(190, 224, 255, 0.16);
+  --space-border-hover: rgba(210, 239, 255, 0.38);
 
-  --space-text: #f2f2ff;
-  --space-muted: #a0a3c2;
-  --space-subtle: #707596;
+  --space-text: #edf7ff;
+  --space-muted: #b5cde7;
+  --space-subtle: #91b2d5;
 
-  --space-purple: #9b7bff;
-  --space-violet: #7955ed;
-  --space-blue: #55a5ff;
-  --space-cyan: #60d8ff;
-  --space-green: #52dfb1;
-  --space-red: #ff7c9a;
+  --space-purple: #a8d8ff;
+  --space-violet: #79baff;
+  --space-blue: #5caaff;
+  --space-cyan: #c1edff;
+  --space-green: #77e5c1;
+  --space-red: #ff9aaf;
 
   --space-shadow:
-    0 18px 50px rgba(0, 0, 0, 0.24),
-    inset 0 1px 0 rgba(255, 255, 255, 0.045);
+    0 20px 60px rgba(0, 16, 48, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.10);
 }
 
 /* ==========================================
@@ -56,28 +56,24 @@
 
   font-family:
     Inter,
+    Manrope,
     -apple-system,
     BlinkMacSystemFont,
     "Segoe UI",
     sans-serif;
 
+  /* One continuous background across the workspace */
   background:
-    radial-gradient(
-      ellipse at 12% 5%,
-      rgba(103, 69, 210, 0.19),
-      transparent 34%
+    linear-gradient(
+      rgba(2, 13, 32, 0.22),
+      rgba(2, 13, 32, 0.30)
     ),
-    radial-gradient(
-      ellipse at 88% 18%,
-      rgba(40, 119, 220, 0.13),
-      transparent 32%
-    ),
-    radial-gradient(
-      ellipse at 60% 100%,
-      rgba(100, 60, 190, 0.10),
-      transparent 40%
-    ),
-    var(--space-bg);
+    url("/images/probeready-bg.png");
+
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 
   overflow: hidden;
 }
@@ -107,83 +103,136 @@
 
   overflow: hidden;
   pointer-events: none;
+
+  opacity: 0.18;
+
+  background:
+    radial-gradient(
+      circle at 72% 16%,
+      rgba(220, 242, 255, 0.7) 0 1px,
+      transparent 2px
+    ),
+    radial-gradient(
+      circle at 52% 29%,
+      rgba(201, 231, 255, 0.65) 0 1px,
+      transparent 2px
+    ),
+    radial-gradient(
+      circle at 86% 42%,
+      rgba(201, 231, 255, 0.45) 0 1px,
+      transparent 2px
+    ),
+    radial-gradient(
+      circle at 37% 13%,
+      rgba(201, 231, 255, 0.4) 0 1px,
+      transparent 2px
+    ),
+    radial-gradient(
+      circle at 64% 72%,
+      rgba(201, 231, 255, 0.35) 0 1px,
+      transparent 2px
+    );
 }
+
+/* Atmospheric light */
 
 .workspace-glow {
   position: absolute;
 
-  width: 420px;
-  height: 420px;
+  width: 560px;
+  height: 560px;
 
   border-radius: 50%;
-  filter: blur(110px);
-  opacity: 0.14;
+  filter: blur(120px);
+  opacity: 0.20;
+
+  pointer-events: none;
 }
 
 .workspace-glow-violet {
-  top: -180px;
-  left: 20%;
-  background: #8957ff;
+  top: -260px;
+  left: 22%;
+
+  background: #4c9cf0;
+  opacity: 0.18;
 }
 
 .workspace-glow-blue {
-  right: -180px;
-  bottom: -180px;
-  background: #258cff;
+  right: -210px;
+  bottom: -220px;
+
+  background: #318bfa;
+  opacity: 0.20;
 }
+
+/* Subtle spatial grid */
 
 .workspace-grid {
   position: absolute;
   inset: 0;
 
-  opacity: 0.12;
+  opacity: 0.035;
 
   background-image:
     linear-gradient(
-      rgba(160, 170, 255, 0.045) 1px,
+      rgba(205, 233, 255, 0.16) 1px,
       transparent 1px
     ),
     linear-gradient(
       90deg,
-      rgba(160, 170, 255, 0.045) 1px,
+      rgba(205, 233, 255, 0.16) 1px,
       transparent 1px
     );
 
-  background-size: 48px 48px;
+  background-size: 65px 65px;
 
   mask-image: linear-gradient(
     to bottom,
     black,
-    transparent 85%
+    transparent 78%
   );
 }
+
+/* Large atmospheric orbital rings */
 
 .workspace-layout::before,
 .workspace-layout::after {
   position: absolute;
   z-index: 0;
 
-  width: 380px;
-  height: 380px;
-
   content: "";
   pointer-events: none;
 
   border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.12;
 }
 
 .workspace-layout::before {
-  top: 10%;
-  left: 20%;
-  background: #7549ff;
+  width: 650px;
+  height: 650px;
+
+  top: -390px;
+  right: 5%;
+
+  border: 1px solid rgba(198, 230, 255, 0.07);
+
+  box-shadow:
+    0 0 0 35px rgba(198, 230, 255, 0.018),
+    0 0 0 85px rgba(198, 230, 255, 0.012),
+    inset 0 0 70px rgba(140, 200, 255, 0.035);
 }
 
 .workspace-layout::after {
-  right: 5%;
-  bottom: 0;
-  background: #167fe8;
+  width: 430px;
+  height: 430px;
+
+  right: 18%;
+  bottom: -330px;
+
+  border: 1px solid rgba(198, 230, 255, 0.06);
+
+  box-shadow:
+    0 0 0 35px rgba(198, 230, 255, 0.018),
+    0 0 0 75px rgba(198, 230, 255, 0.012);
 }
 
 /* ==========================================
@@ -197,7 +246,7 @@
   display: flex;
   flex-direction: column;
 
-  flex-shrink: 0;
+  flex : 0 0 250px;
 
   width: 250px;
   min-width: 250px;
@@ -206,14 +255,18 @@
 
   padding: 27px 17px 24px;
 
-  background: rgba(10, 12, 28, 0.88);
-  border-right: 1px solid var(--space-border);
+  /* Transparent glass, background remains visible */
+  background: rgba(3, 18, 42, 0.24);
 
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  border-right: 1px solid rgba(190, 224, 255, 0.16);
+
+  box-shadow:
+    12px 0 45px rgba(0, 13, 38, 0.12),
+    inset -1px 0 0 rgba(255, 255, 255, 0.04);
+
+  backdrop-filter: blur(18px) saturate(145%);
+  -webkit-backdrop-filter: blur(18px) saturate(145%);
 }
-
-/* BrandLogo remains unchanged */
 
 .workspace-sidebar .brand-logo {
   margin: 0 0 42px 5px;
@@ -226,7 +279,7 @@
 .workspace-sidebar-label {
   margin: 5px 11px 15px;
 
-  color: var(--space-subtle);
+  color: #91b4d8;
 
   font-size: 10px;
   font-weight: 750;
@@ -255,25 +308,29 @@
 
   overflow: hidden;
 
-  color: #a6aac8;
+  color: rgba(220, 237, 255, 0.82);
 
+  background: rgba(190, 225, 255, 0.025);
   border: 1px solid transparent;
   border-radius: 12px;
 
   font-size: 13px;
   font-weight: 550;
 
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
   transition:
     background 0.25s ease,
     color 0.25s ease,
     border-color 0.25s ease,
-    transform 0.25s ease;
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .workspace-nav-link svg {
   flex-shrink: 0;
-
-  color: #858bad;
+  color: #a4c7e8;
 
   transition: color 0.25s ease;
 }
@@ -281,14 +338,14 @@
 .workspace-nav-link:hover {
   color: #fff;
 
-  background: rgba(141, 119, 255, 0.09);
-  border-color: rgba(155, 123, 255, 0.12);
+  background: rgba(175, 220, 255, 0.075);
+  border-color: rgba(190, 230, 255, 0.13);
 
   transform: translateX(2px);
 }
 
 .workspace-nav-link:hover svg {
-  color: var(--space-purple);
+  color: var(--space-cyan);
 }
 
 .workspace-nav-link.active {
@@ -297,21 +354,24 @@
   background:
     linear-gradient(
       110deg,
-      rgba(126, 91, 244, 0.24),
-      rgba(75, 113, 225, 0.11)
+      rgba(145, 205, 255, 0.13),
+      rgba(100, 180, 255, 0.055)
     );
 
-  border-color: rgba(155, 123, 255, 0.25);
+  border-color: rgba(195, 230, 255, 0.23);
 
   box-shadow:
-    inset 0 0 20px rgba(125, 91, 255, 0.06),
-    0 5px 20px rgba(72, 49, 157, 0.12);
+    inset 0 1px 0 rgba(255, 255, 255, 0.10),
+    0 5px 22px rgba(0, 20, 55, 0.10);
+
+  backdrop-filter: blur(22px) saturate(180%);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
 }
 
 .workspace-nav-link.active::before {
   position: absolute;
-  top: 10px;
-  bottom: 10px;
+  top: 9px;
+  bottom: 9px;
   left: 0;
 
   width: 3px;
@@ -321,18 +381,18 @@
 
   background: linear-gradient(
     180deg,
-    #b49aff,
-    #668dff
+    #e0f6ff,
+    #65b5ff
   );
 
-  box-shadow: 0 0 12px rgba(155, 123, 255, 0.8);
+  box-shadow: 0 0 13px rgba(137, 211, 255, 0.85);
 }
 
 .workspace-nav-link.active svg {
-  color: #b9a3ff;
+  color: #c9edff;
 
   filter: drop-shadow(
-    0 0 6px rgba(155, 123, 255, 0.5)
+    0 0 7px rgba(112, 202, 255, 0.48)
   );
 }
 
@@ -366,7 +426,9 @@
   border-radius: 50%;
   background: var(--space-green);
 
-  box-shadow: 0 0 10px rgba(82, 223, 177, 0.8);
+  box-shadow:
+    0 0 8px rgba(119, 229, 193, 0.9),
+    0 0 18px rgba(119, 229, 193, 0.35);
 }
 
 /* ==========================================
@@ -386,6 +448,9 @@
   padding: 34px clamp(22px, 4vw, 65px);
   margin: 0;
 
+  /* Keep the shared background visible */
+  background: transparent;
+
   overflow-x: hidden;
   overflow-y: auto;
 
@@ -393,7 +458,7 @@
 
   scrollbar-width: thin;
   scrollbar-color:
-    rgba(155, 123, 255, 0.35)
+    rgba(139, 198, 255, 0.38)
     transparent;
 }
 
@@ -406,12 +471,12 @@
 }
 
 .workspace-main::-webkit-scrollbar-thumb {
-  background: rgba(155, 123, 255, 0.3);
+  background: rgba(139, 198, 255, 0.30);
   border-radius: 10px;
 }
 
 .workspace-main::-webkit-scrollbar-thumb:hover {
-  background: rgba(155, 123, 255, 0.55);
+  background: rgba(139, 198, 255, 0.55);
 }
 
 /* ==========================================
@@ -430,7 +495,7 @@
   padding-bottom: 23px;
   margin-bottom: 32px;
 
-  border-bottom: 1px solid var(--space-border);
+  border-bottom: 1px solid rgba(192, 224, 255, 0.17);
 }
 
 .workspace-topbar-heading {
@@ -442,7 +507,7 @@
   align-items: center;
   gap: 9px;
 
-  color: var(--space-subtle);
+  color: #a2c0df;
 
   font-size: 10px;
   font-weight: 750;
@@ -450,14 +515,14 @@
 }
 
 .workspace-breadcrumb-divider {
-  color: var(--space-purple);
+  color: var(--space-cyan);
   opacity: 0.8;
 }
 
 .workspace-topbar h2 {
   margin: 8px 0 0;
 
-  color: #f5f4ff;
+  color: #f0f8ff;
 
   font-size: 22px;
   font-weight: 700;
@@ -523,11 +588,13 @@
     min-height: 100vh;
     min-height: 100dvh;
 
+    /* Preserve the background image on mobile */
+    background-attachment: scroll;
+    background-position: center top;
+
     overflow-x: clip;
     overflow-y: visible;
   }
-
-  /* Mobile header */
 
   .workspace-mobile-header {
     position: sticky;
@@ -544,11 +611,11 @@
 
     padding: 12px 17px;
 
-    background: rgba(10, 12, 28, 0.96);
+    background: rgba(3, 18, 42, 0.30);
     border-bottom: 1px solid var(--space-border);
 
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(20px) saturate(145%);
+    -webkit-backdrop-filter: blur(20px) saturate(145%);
   }
 
   .workspace-mobile-header .brand-logo {
@@ -568,7 +635,7 @@
 
     color: var(--space-text);
 
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(205, 230, 255, 0.08);
     border: 1px solid var(--space-border);
     border-radius: 11px;
 
@@ -578,10 +645,8 @@
   }
 
   .workspace-mobile-menu-button:hover {
-    background: rgba(155, 123, 255, 0.14);
+    background: rgba(120, 190, 255, 0.17);
   }
-
-  /* Mobile navigation */
 
   .workspace-mobile-navigation {
     position: absolute;
@@ -594,8 +659,11 @@
 
     padding: 0 16px;
 
-    background: rgba(10, 12, 28, 0.98);
+    background: rgba(3, 18, 42, 0.38);
     border-bottom: 1px solid var(--space-border);
+
+    backdrop-filter: blur(22px) saturate(145%);
+    -webkit-backdrop-filter: blur(22px) saturate(145%);
 
     opacity: 0;
     visibility: hidden;
@@ -633,13 +701,9 @@
     font-size: 13px;
   }
 
-  /* Hide desktop sidebar */
-
   .workspace-sidebar {
     display: none;
   }
-
-  /* Main content */
 
   .workspace-main {
     width: 100%;
@@ -651,6 +715,8 @@
 
     padding: 22px 16px;
     margin: 0;
+
+    background: transparent;
 
     overflow: visible;
   }
@@ -727,7 +793,7 @@
 
 .workspace-layout a:focus-visible,
 .workspace-layout button:focus-visible {
-  outline: 2px solid var(--space-purple);
+  outline: 2px solid var(--space-cyan);
   outline-offset: 3px;
 }
 
@@ -741,3 +807,4 @@
     scroll-behavior: auto !important;
   }
 }
+
