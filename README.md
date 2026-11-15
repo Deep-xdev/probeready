@@ -1,82 +1,57 @@
 ProbeReady
 
-An Adaptive AI Interview Coach That Tests What Candidates Actually Claim
+An Adaptive AI Interview Coach That Tests What Candidates Actually Claim.
 
-ProbeReady is an AI-powered interview preparation platform designed to help candidates prepare for technical interviews through personalized questions, interactive mock interviews, and AI-driven answer evaluation.
+ProbeReady is an AI-powered interview preparation platform that evaluates candidates based on their actual skills, resume claims, and technical understanding.
 
-Traditional interview preparation platforms often rely on generic question banks. ProbeReady takes a different approach by analyzing a candidate's resume, identifying their technical skills and project claims, and generating relevant interview questions to evaluate their actual understanding.
+Instead of relying on generic question banks, ProbeReady analyzes a candidate's resume, generates personalized interview questions, and provides structured feedback to help identify knowledge gaps.
 
 ---
 
-Overview
+Screenshots
 
-ProbeReady aims to make interview preparation more personalized, practical, and evidence-driven.
+<!-- Add your application screenshots here -->Dashboard| Resume Intelligence
+Add dashboard screenshot| Add resume screenshot
 
-The platform helps candidates:
+Mock Interview| Interview Report
+Add interview screenshot| Add report screenshot
 
-- Understand their technical strengths and weaknesses.
-- Prepare for interviews using resume-based questions.
-- Practice answering technical interview questions.
-- Receive structured feedback on their responses.
-- Track their interview performance.
+---
 
-Key Features
+Features
 
-1. Resume Intelligence
-
-Upload a resume and extract relevant information, including:
-
-- Technical skills
-- Projects
-- Education
-- Experience
-- Technical claims
-
-2. AI Question Generation
-
-Generate personalized technical interview questions based on the candidate's resume and technical background.
-
-3. Mock Interviews
-
-Practice technical interviews through interactive interview sessions.
-
-4. Answer Evaluation
-
-Evaluate candidate responses using multiple criteria:
-
-- Technical accuracy
-- Depth of understanding
-- Clarity
-- Supporting evidence
-
-5. Performance Analytics
-
-Review interview performance, scores, strengths, weaknesses, and improvement areas.
-
-6. Adaptive Interviewing
-
-Adjust interview question difficulty based on candidate performance.
+- Resume Intelligence: Extracts skills, projects, education, experience, and technical claims from uploaded resumes.
+- AI Question Generation: Generates personalized technical questions based on resume information.
+- Mock Interviews: Provides an interactive environment for interview practice.
+- Answer Evaluation: Evaluates responses based on technical accuracy, depth, clarity, and evidence.
+- Performance Analytics: Displays interview scores, strengths, and areas for improvement.
+- Adaptive Interviewing: Adjusts question difficulty based on candidate performance.
 
 ---
 
 Technology Stack
 
-Component| Technology
-Frontend| React.js
-Build Tool| Vite
-Programming Language| JavaScript
-Backend| Python
-Backend Framework| FastAPI
-Database| SQLite
-ORM| SQLAlchemy
-AI Integration| Groq API
-Styling| CSS
-Version Control| Git and GitHub
+Frontend| Backend| Database| AI
+React.js| Python| SQLite| Groq API
+Vite| FastAPI| SQLAlchemy| LLM Integration
+JavaScript| REST API| | 
+
+---
+
+How It Works
+
+1. Upload your resume.
+2. ProbeReady extracts your skills, projects, and technical claims.
+3. AI generates personalized interview questions.
+4. Participate in a mock interview.
+5. Receive AI-powered feedback and evaluation.
+6. Review your performance and identify areas for improvement.
+
+---
 
 Project Structure
 
 ProbeReady/
-│
 ├── backend/
 │   ├── main.py
 │   ├── ai_service.py
@@ -97,112 +72,88 @@ ProbeReady/
 │
 └── README.md
 
-Installation and Setup
+---
+
+Getting Started
 
 Prerequisites
-
-Make sure you have installed:
 
 - Python
 - Node.js and npm
 - Git
-- A Groq API key
+- Groq API key
 
 1. Clone the Repository
 
 git clone https://github.com/Deep-xdev/probeready.git
 cd probeready
 
-2. Backend Setup
-
-Navigate to the backend directory:
+2. Set Up the Backend
 
 cd backend
-
-Create a virtual environment:
-
 python -m venv venv
 
-Activate the environment.
+Activate the virtual environment.
 
-Windows:
+Windows
 
 venv\Scripts\activate
 
-Linux/macOS:
+Linux / macOS
 
 source venv/bin/activate
 
-Install the backend dependencies:
+Install dependencies:
 
 pip install -r requirements.txt
 
-Create a ".env" file inside the backend directory:
+Create a ".env" file inside "backend/":
 
 GROQ_API_KEY=your_groq_api_key
 GROQ_MODEL=openai/gpt-oss-20b
 
-Start the backend server:
+Run the backend:
 
 uvicorn main:app --reload
 
-The backend API documentation will be available at:
+API documentation: "http://localhost:8000/docs"
 
-"http://localhost:8000/docs"
+3. Set Up the Frontend
 
-3. Frontend Setup
-
-Open a separate terminal and navigate to the frontend directory:
+Open another terminal:
 
 cd frontend
-
-Install dependencies:
-
 npm install
-
-Start the development server:
-
 npm run dev
 
-Open the local URL provided by Vite in your browser.
+Open the local development URL provided by Vite.
 
 ---
 
-How It Works
-
-1. The candidate uploads their resume.
-2. ProbeReady extracts relevant candidate information.
-3. The AI generates personalized technical interview questions.
-4. The candidate participates in a mock interview.
-5. Responses are evaluated using structured evaluation criteria.
-6. Performance results are saved and presented through the dashboard.
-
-Future Improvements
-
-The following improvements are planned for future development:
+Future Development
 
 - User authentication and individual candidate profiles.
-- User-specific resume and interview data isolation.
-- Advanced adaptive interview workflows.
-- Enhanced voice-based interview functionality.
+- Secure user-specific data management.
+- Advanced voice-based interview experiences.
 - GitHub repository analysis for technical claim verification.
+- Improved adaptive interview workflows.
 - Personalized learning recommendations.
-- More detailed interview performance analytics.
 
-Project Objective
+---
 
-ProbeReady aims to move beyond traditional interview preparation methods by evaluating what candidates actually understand rather than simply testing their ability to memorize answers.
+Project Vision
 
-The objective is to provide a practical interview preparation experience that helps candidates identify knowledge gaps, improve technical communication, and develop confidence through structured feedback.
+ProbeReady aims to make interview preparation more practical and evidence-driven by focusing on what candidates can actually explain and demonstrate, rather than what they can simply memorize.
+
+---
 
 Developer
 
 Deep-xdev
 
-GitHub: "https://github.com/Deep-xdev" (https://github.com/Deep-xdev)
-
-Repository: "https://github.com/Deep-xdev/probeready" (https://github.com/Deep-xdev/probeready)
+- GitHub: https://github.com/Deep-xdev
+- Repository: https://github.com/Deep-xdev/probeready
 
 ---
 
-ProbeReady is an ongoing development project. Features and implementation details may evolve over time.
+Developed as an ongoing project focused on AI-powered interview preparation and career readiness.
